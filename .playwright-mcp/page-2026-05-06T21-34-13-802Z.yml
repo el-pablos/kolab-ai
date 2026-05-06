@@ -1,0 +1,167 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - link "KOLab AI" [ref=e5] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e7]
+          - generic [ref=e10]: KOLab AI
+        - button [ref=e11]:
+          - img [ref=e12]
+      - navigation [ref=e14]:
+        - link "Dashboard" [ref=e15] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e16]
+          - generic [ref=e21]: Dashboard
+        - link "Upload Brief" [ref=e22] [cursor=pointer]:
+          - /url: /brief
+          - img [ref=e23]
+          - generic [ref=e26]: Upload Brief
+        - link "Creator Discovery" [ref=e27] [cursor=pointer]:
+          - /url: /creators
+          - img [ref=e28]
+          - generic [ref=e33]: Creator Discovery
+        - link "Campaign" [ref=e34] [cursor=pointer]:
+          - /url: /campaign
+          - img [ref=e35]
+          - generic [ref=e38]: Campaign
+        - link "AI Assistant" [ref=e39] [cursor=pointer]:
+          - /url: /chat
+          - img [ref=e40]
+          - generic [ref=e42]: AI Assistant
+      - link "Settings" [ref=e44] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e45]
+        - generic [ref=e48]: Settings
+    - generic [ref=e49]:
+      - banner [ref=e50]:
+        - generic [ref=e51]:
+          - img [ref=e52]
+          - textbox "Cari creator, campaign, atau ketik perintah..." [ref=e55]
+        - generic [ref=e56]:
+          - button "3" [ref=e57]:
+            - img [ref=e58]
+            - generic [ref=e61]: "3"
+          - generic [ref=e62]:
+            - generic [ref=e64]: EP
+            - generic [ref=e65]:
+              - paragraph [ref=e66]: El Pablo
+              - paragraph [ref=e67]: Admin
+      - main [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - generic [ref=e71]:
+              - heading "Dashboard" [level=1] [ref=e72]
+              - paragraph [ref=e73]: Overview campaign intelligence dan creator matching
+            - generic [ref=e74]:
+              - img [ref=e75]
+              - text: AI Active
+          - generic [ref=e78]:
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - img [ref=e84]
+                - img [ref=e87]
+              - generic [ref=e90]:
+                - paragraph [ref=e91]: "12"
+                - paragraph [ref=e92]: +3 bulan ini
+              - paragraph [ref=e93]: Total Campaign
+            - generic [ref=e96]:
+              - generic [ref=e97]:
+                - img [ref=e99]
+                - img [ref=e103]
+              - generic [ref=e106]:
+                - paragraph [ref=e107]: "3"
+                - paragraph [ref=e108]: 2 menunggu matching
+              - paragraph [ref=e109]: Campaign Aktif
+            - generic [ref=e112]:
+              - generic [ref=e113]:
+                - img [ref=e115]
+                - img [ref=e120]
+              - generic [ref=e123]:
+                - paragraph [ref=e124]: "42"
+                - paragraph [ref=e125]: dari 156 total
+              - paragraph [ref=e126]: Creator Matched
+            - generic [ref=e129]:
+              - generic [ref=e130]:
+                - img [ref=e132]
+                - img [ref=e135]
+              - generic [ref=e138]:
+                - paragraph [ref=e139]: 78.5%
+                - paragraph [ref=e140]: +5.2% dari bulan lalu
+              - paragraph [ref=e141]: Avg Fit Score
+          - generic [ref=e142]:
+            - generic [ref=e144]:
+              - generic [ref=e146]:
+                - img [ref=e147]
+                - text: Campaign Terbaru
+              - generic [ref=e151]:
+                - generic [ref=e152]:
+                  - generic [ref=e153]:
+                    - heading "Peluncuran Serum Vitamin C Premium" [level=4] [ref=e154]
+                    - paragraph [ref=e155]: GlowLab Indonesia • Rp 150jt
+                  - generic [ref=e156]: active
+                - generic [ref=e157]:
+                  - generic [ref=e158]:
+                    - heading "Campaign Ramadan Snack Box" [level=4] [ref=e159]
+                    - paragraph [ref=e160]: NusaSnack • Rp 80jt
+                  - generic [ref=e161]: completed
+                - generic [ref=e162]:
+                  - generic [ref=e163]:
+                    - heading "App Launch - FinTrack Budget Planner" [level=4] [ref=e164]
+                    - paragraph [ref=e165]: FinTrack • Rp 200jt
+                  - generic [ref=e166]: matching
+            - generic [ref=e167]:
+              - generic [ref=e168]:
+                - generic [ref=e170]:
+                  - img [ref=e171]
+                  - text: Top Creator
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - generic [ref=e179]: A
+                    - generic [ref=e180]:
+                      - paragraph [ref=e181]: Anya Maharani
+                      - paragraph [ref=e182]: ER 6.2% • 850K
+                    - paragraph [ref=e184]: Trust 88%
+                  - generic [ref=e185]:
+                    - generic [ref=e186]: R
+                    - generic [ref=e187]:
+                      - paragraph [ref=e188]: Rizky Pratama
+                      - paragraph [ref=e189]: ER 5.8% • 1200K
+                    - paragraph [ref=e191]: Trust 82%
+                  - generic [ref=e192]:
+                    - generic [ref=e193]: S
+                    - generic [ref=e194]:
+                      - paragraph [ref=e195]: Sari Dewi
+                      - paragraph [ref=e196]: ER 8.4% • 2100K
+                    - paragraph [ref=e198]: Trust 95%
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: D
+                    - generic [ref=e201]:
+                      - paragraph [ref=e202]: Dimas Arya
+                      - paragraph [ref=e203]: ER 7.1% • 680K
+                    - paragraph [ref=e205]: Trust 84%
+                  - generic [ref=e206]:
+                    - generic [ref=e207]: P
+                    - generic [ref=e208]:
+                      - paragraph [ref=e209]: Putri Ayu
+                      - paragraph [ref=e210]: ER 9.3% • 420K
+                    - paragraph [ref=e212]: Trust 87%
+              - generic [ref=e213]:
+                - generic [ref=e215]:
+                  - img [ref=e216]
+                  - text: Budget Overview
+                - generic [ref=e219]:
+                  - generic [ref=e220]:
+                    - generic [ref=e221]:
+                      - generic [ref=e222]: Total Budget
+                      - generic [ref=e223]: Rp 1.3M
+                    - progressbar [ref=e224]
+                  - generic [ref=e226]:
+                    - generic [ref=e227]:
+                      - generic [ref=e228]: Completion Rate
+                      - generic [ref=e229]: 87%
+                    - progressbar [ref=e230]
+                  - generic [ref=e232]:
+                    - img [ref=e233]
+                    - generic [ref=e236]: Campaign on track
+  - alert [ref=e237]

@@ -1,0 +1,342 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link "KOLab AI" [ref=e5] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e7]
+        - generic [ref=e10]: KOLab AI
+      - button [ref=e11]:
+        - img [ref=e12]
+    - navigation [ref=e14]:
+      - link "Dashboard" [ref=e15] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e16]
+        - generic [ref=e21]: Dashboard
+      - link "Upload Brief" [ref=e22] [cursor=pointer]:
+        - /url: /brief
+        - img [ref=e23]
+        - generic [ref=e26]: Upload Brief
+      - link "Creator Discovery" [ref=e27] [cursor=pointer]:
+        - /url: /creators
+        - img [ref=e28]
+        - generic [ref=e33]: Creator Discovery
+      - link "Campaign" [ref=e34] [cursor=pointer]:
+        - /url: /campaign
+        - img [ref=e35]
+        - generic [ref=e38]: Campaign
+      - link "AI Assistant" [ref=e39] [cursor=pointer]:
+        - /url: /chat
+        - img [ref=e40]
+        - generic [ref=e42]: AI Assistant
+    - link "Settings" [ref=e44] [cursor=pointer]:
+      - /url: "#"
+      - img [ref=e45]
+      - generic [ref=e48]: Settings
+  - generic [ref=e49]:
+    - banner [ref=e50]:
+      - generic [ref=e51]:
+        - img [ref=e52]
+        - textbox "Cari creator, campaign, atau ketik perintah..." [ref=e55]
+      - generic [ref=e56]:
+        - button "3" [ref=e57]:
+          - img [ref=e58]
+          - generic [ref=e61]: "3"
+        - generic [ref=e62]:
+          - generic [ref=e64]: EP
+          - generic [ref=e65]:
+            - paragraph [ref=e66]: El Pablo
+            - paragraph [ref=e67]: Admin
+    - main [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - heading "Creator Discovery" [level=1] [ref=e71]
+          - paragraph [ref=e72]: Cari creator dengan natural language — AI memahami konteks dan personality
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - img [ref=e77]
+              - 'textbox "Contoh: \"creator beauty soft-spoken yang audience-nya ibu-ibu 25-35 di Jakarta\"" [ref=e80]'
+            - button "AI Search" [disabled]:
+              - img
+              - text: AI Search
+            - button "Filter" [ref=e81] [cursor=pointer]:
+              - img
+              - text: Filter
+          - generic [ref=e82]:
+            - button "creator beauty premium Jakarta" [ref=e83]
+            - button "tech reviewer yang jujur dan chaotic" [ref=e84]
+            - button "ibu-ibu racun TikTok food content" [ref=e85]
+            - button "anak skena fashion indie Jogja" [ref=e86]
+            - button "gaming creator cewek bumi" [ref=e87]
+        - generic [ref=e88]:
+          - paragraph [ref=e90]: Semua creator (10)
+          - link "A Anya Maharani @anyamaharani 850K ER 6.2% Jakarta Trust 88% beauty skincare lifestyle beauty premium \"premium aesthetic\" • soft spoken luxury" [ref=e92] [cursor=pointer]:
+            - /url: /creators/creator-001
+            - generic [ref=e95]:
+              - generic [ref=e96]: A
+              - generic [ref=e97]:
+                - heading "Anya Maharani" [level=3] [ref=e99]
+                - paragraph [ref=e100]: "@anyamaharani"
+                - generic [ref=e101]:
+                  - generic [ref=e102]:
+                    - img [ref=e103]
+                    - text: 850K
+                  - generic [ref=e108]:
+                    - img [ref=e109]
+                    - text: ER 6.2%
+                  - generic [ref=e112]:
+                    - img [ref=e113]
+                    - text: Jakarta
+                  - generic [ref=e116]:
+                    - img [ref=e117]
+                    - text: Trust 88%
+                - generic [ref=e119]:
+                  - generic [ref=e120]: beauty
+                  - generic [ref=e121]: skincare
+                  - generic [ref=e122]: lifestyle
+                  - generic [ref=e123]: beauty
+                  - generic [ref=e124]: premium
+                - paragraph [ref=e125]: "\"premium aesthetic\" • soft spoken luxury"
+          - link "R Rizky Pratama @rizkyprtm 1.2M ER 5.8% Bandung Trust 82% technology gadget apps tech gadget \"relatable tech bro\" • chaotic energy" [ref=e127] [cursor=pointer]:
+            - /url: /creators/creator-002
+            - generic [ref=e130]:
+              - generic [ref=e131]: R
+              - generic [ref=e132]:
+                - heading "Rizky Pratama" [level=3] [ref=e134]
+                - paragraph [ref=e135]: "@rizkyprtm"
+                - generic [ref=e136]:
+                  - generic [ref=e137]:
+                    - img [ref=e138]
+                    - text: 1.2M
+                  - generic [ref=e143]:
+                    - img [ref=e144]
+                    - text: ER 5.8%
+                  - generic [ref=e147]:
+                    - img [ref=e148]
+                    - text: Bandung
+                  - generic [ref=e151]:
+                    - img [ref=e152]
+                    - text: Trust 82%
+                - generic [ref=e154]:
+                  - generic [ref=e155]: technology
+                  - generic [ref=e156]: gadget
+                  - generic [ref=e157]: apps
+                  - generic [ref=e158]: tech
+                  - generic [ref=e159]: gadget
+                - paragraph [ref=e160]: "\"relatable tech bro\" • chaotic energy"
+          - link "S Sari Dewi @saridewi.cook 2.1M ER 8.4% Surabaya Trust 95% food cooking family food cooking \"ibu-ibu racun TikTok\" • warm motherly" [ref=e162] [cursor=pointer]:
+            - /url: /creators/creator-003
+            - generic [ref=e165]:
+              - generic [ref=e166]: S
+              - generic [ref=e167]:
+                - heading "Sari Dewi" [level=3] [ref=e169]
+                - paragraph [ref=e170]: "@saridewi.cook"
+                - generic [ref=e171]:
+                  - generic [ref=e172]:
+                    - img [ref=e173]
+                    - text: 2.1M
+                  - generic [ref=e178]:
+                    - img [ref=e179]
+                    - text: ER 8.4%
+                  - generic [ref=e182]:
+                    - img [ref=e183]
+                    - text: Surabaya
+                  - generic [ref=e186]:
+                    - img [ref=e187]
+                    - text: Trust 95%
+                - generic [ref=e189]:
+                  - generic [ref=e190]: food
+                  - generic [ref=e191]: cooking
+                  - generic [ref=e192]: family
+                  - generic [ref=e193]: food
+                  - generic [ref=e194]: cooking
+                - paragraph [ref=e195]: "\"ibu-ibu racun TikTok\" • warm motherly"
+          - link "D Dimas Arya @dimasarya.fit 680K ER 7.1% Jakarta Trust 84% fitness health motivation fitness health \"aspirational fitness\" • motivational coach" [ref=e197] [cursor=pointer]:
+            - /url: /creators/creator-004
+            - generic [ref=e200]:
+              - generic [ref=e201]: D
+              - generic [ref=e202]:
+                - heading "Dimas Arya" [level=3] [ref=e204]
+                - paragraph [ref=e205]: "@dimasarya.fit"
+                - generic [ref=e206]:
+                  - generic [ref=e207]:
+                    - img [ref=e208]
+                    - text: 680K
+                  - generic [ref=e213]:
+                    - img [ref=e214]
+                    - text: ER 7.1%
+                  - generic [ref=e217]:
+                    - img [ref=e218]
+                    - text: Jakarta
+                  - generic [ref=e221]:
+                    - img [ref=e222]
+                    - text: Trust 84%
+                - generic [ref=e224]:
+                  - generic [ref=e225]: fitness
+                  - generic [ref=e226]: health
+                  - generic [ref=e227]: motivation
+                  - generic [ref=e228]: fitness
+                  - generic [ref=e229]: health
+                - paragraph [ref=e230]: "\"aspirational fitness\" • motivational coach"
+          - link "P Putri Ayu @putriayu.style 420K ER 9.3% Yogyakarta Trust 87% fashion thrift lifestyle fashion thrift \"anak skena indie\" • edgy creative" [ref=e232] [cursor=pointer]:
+            - /url: /creators/creator-005
+            - generic [ref=e235]:
+              - generic [ref=e236]: P
+              - generic [ref=e237]:
+                - heading "Putri Ayu" [level=3] [ref=e239]
+                - paragraph [ref=e240]: "@putriayu.style"
+                - generic [ref=e241]:
+                  - generic [ref=e242]:
+                    - img [ref=e243]
+                    - text: 420K
+                  - generic [ref=e248]:
+                    - img [ref=e249]
+                    - text: ER 9.3%
+                  - generic [ref=e252]:
+                    - img [ref=e253]
+                    - text: Yogyakarta
+                  - generic [ref=e256]:
+                    - img [ref=e257]
+                    - text: Trust 87%
+                - generic [ref=e259]:
+                  - generic [ref=e260]: fashion
+                  - generic [ref=e261]: thrift
+                  - generic [ref=e262]: lifestyle
+                  - generic [ref=e263]: fashion
+                  - generic [ref=e264]: thrift
+                - paragraph [ref=e265]: "\"anak skena indie\" • edgy creative"
+          - link "B Budi Santoso @budisantoso.edu 950K ER 4.8% Semarang Trust 93% education science motivation education teacher \"approachable educator\" • educational friendly" [ref=e267] [cursor=pointer]:
+            - /url: /creators/creator-006
+            - generic [ref=e270]:
+              - generic [ref=e271]: B
+              - generic [ref=e272]:
+                - heading "Budi Santoso" [level=3] [ref=e274]
+                - paragraph [ref=e275]: "@budisantoso.edu"
+                - generic [ref=e276]:
+                  - generic [ref=e277]:
+                    - img [ref=e278]
+                    - text: 950K
+                  - generic [ref=e283]:
+                    - img [ref=e284]
+                    - text: ER 4.8%
+                  - generic [ref=e287]:
+                    - img [ref=e288]
+                    - text: Semarang
+                  - generic [ref=e291]:
+                    - img [ref=e292]
+                    - text: Trust 93%
+                - generic [ref=e294]:
+                  - generic [ref=e295]: education
+                  - generic [ref=e296]: science
+                  - generic [ref=e297]: motivation
+                  - generic [ref=e298]: education
+                  - generic [ref=e299]: teacher
+                - paragraph [ref=e300]: "\"approachable educator\" • educational friendly"
+          - link "N Nadia Kusuma @nadiakusuma 1.5M ER 6.9% Bali Trust 86% travel food culture travel food \"konten tongkrongan\" • adventurous storyteller" [ref=e302] [cursor=pointer]:
+            - /url: /creators/creator-007
+            - generic [ref=e305]:
+              - generic [ref=e306]: "N"
+              - generic [ref=e307]:
+                - heading "Nadia Kusuma" [level=3] [ref=e309]
+                - paragraph [ref=e310]: "@nadiakusuma"
+                - generic [ref=e311]:
+                  - generic [ref=e312]:
+                    - img [ref=e313]
+                    - text: 1.5M
+                  - generic [ref=e318]:
+                    - img [ref=e319]
+                    - text: ER 6.9%
+                  - generic [ref=e322]:
+                    - img [ref=e323]
+                    - text: Bali
+                  - generic [ref=e326]:
+                    - img [ref=e327]
+                    - text: Trust 86%
+                - generic [ref=e329]:
+                  - generic [ref=e330]: travel
+                  - generic [ref=e331]: food
+                  - generic [ref=e332]: culture
+                  - generic [ref=e333]: travel
+                  - generic [ref=e334]: food
+                - paragraph [ref=e335]: "\"konten tongkrongan\" • adventurous storyteller"
+          - link "K Kevin Wijaya @kevinwijaya.biz 780K ER 5.5% Jakarta Trust 78% business entrepreneurship finance business entrepreneur \"young entrepreneur\" • confident mentor" [ref=e337] [cursor=pointer]:
+            - /url: /creators/creator-008
+            - generic [ref=e340]:
+              - generic [ref=e341]: K
+              - generic [ref=e342]:
+                - heading "Kevin Wijaya" [level=3] [ref=e344]
+                - paragraph [ref=e345]: "@kevinwijaya.biz"
+                - generic [ref=e346]:
+                  - generic [ref=e347]:
+                    - img [ref=e348]
+                    - text: 780K
+                  - generic [ref=e353]:
+                    - img [ref=e354]
+                    - text: ER 5.5%
+                  - generic [ref=e357]:
+                    - img [ref=e358]
+                    - text: Jakarta
+                  - generic [ref=e361]:
+                    - img [ref=e362]
+                    - text: Trust 78%
+                - generic [ref=e364]:
+                  - generic [ref=e365]: business
+                  - generic [ref=e366]: entrepreneurship
+                  - generic [ref=e367]: finance
+                  - generic [ref=e368]: business
+                  - generic [ref=e369]: entrepreneur
+                - paragraph [ref=e370]: "\"young entrepreneur\" • confident mentor"
+          - link "L Luna Safitri @lunasafitri.gaming 560K ER 10.2% Malang Trust 81% gaming entertainment lifestyle gaming meme \"cewek bumi gamer\" • playful chaotic" [ref=e372] [cursor=pointer]:
+            - /url: /creators/creator-009
+            - generic [ref=e375]:
+              - generic [ref=e376]: L
+              - generic [ref=e377]:
+                - heading "Luna Safitri" [level=3] [ref=e379]
+                - paragraph [ref=e380]: "@lunasafitri.gaming"
+                - generic [ref=e381]:
+                  - generic [ref=e382]:
+                    - img [ref=e383]
+                    - text: 560K
+                  - generic [ref=e388]:
+                    - img [ref=e389]
+                    - text: ER 10.2%
+                  - generic [ref=e392]:
+                    - img [ref=e393]
+                    - text: Malang
+                  - generic [ref=e396]:
+                    - img [ref=e397]
+                    - text: Trust 81%
+                - generic [ref=e399]:
+                  - generic [ref=e400]: gaming
+                  - generic [ref=e401]: entertainment
+                  - generic [ref=e402]: lifestyle
+                  - generic [ref=e403]: gaming
+                  - generic [ref=e404]: meme
+                - paragraph [ref=e405]: "\"cewek bumi gamer\" • playful chaotic"
+          - link "A Ahmad Fauzi @ahmadfauzi.parenting 340K ER 11.5% Bekasi Trust 96% parenting family education parenting family \"modern dad\" • warm fatherly" [ref=e407] [cursor=pointer]:
+            - /url: /creators/creator-010
+            - generic [ref=e410]:
+              - generic [ref=e411]: A
+              - generic [ref=e412]:
+                - heading "Ahmad Fauzi" [level=3] [ref=e414]
+                - paragraph [ref=e415]: "@ahmadfauzi.parenting"
+                - generic [ref=e416]:
+                  - generic [ref=e417]:
+                    - img [ref=e418]
+                    - text: 340K
+                  - generic [ref=e423]:
+                    - img [ref=e424]
+                    - text: ER 11.5%
+                  - generic [ref=e427]:
+                    - img [ref=e428]
+                    - text: Bekasi
+                  - generic [ref=e431]:
+                    - img [ref=e432]
+                    - text: Trust 96%
+                - generic [ref=e434]:
+                  - generic [ref=e435]: parenting
+                  - generic [ref=e436]: family
+                  - generic [ref=e437]: education
+                  - generic [ref=e438]: parenting
+                  - generic [ref=e439]: family
+                - paragraph [ref=e440]: "\"modern dad\" • warm fatherly"
