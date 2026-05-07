@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   TrendingUp,
@@ -20,6 +20,11 @@ import {
   MessageSquare,
   Rocket,
   ArrowRight,
+  FileText,
+  ChevronDown,
+  ChevronUp,
+  Compass,
+  Layers,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -103,6 +108,69 @@ function getStatusBadge(status: string) {
 
 export default function DashboardPage() {
   const creators = getAllCreators();
+  const [showAbout, setShowAbout] = useState(false);
+
+  const guideSteps = [
+    {
+      step: 1,
+      title: "Upload Brief",
+      desc: "Paste campaign brief, AI parse otomatis",
+      icon: FileText,
+      href: "/brief",
+      color: "violet",
+    },
+    {
+      step: 2,
+      title: "Cari Creator",
+      desc: "Semantic search atau tambah via URL",
+      icon: Users,
+      href: "/creators",
+      color: "indigo",
+    },
+    {
+      step: 3,
+      title: "AI Matching",
+      desc: "Brief dicocokkan dengan creator",
+      icon: Sparkles,
+      href: "/creators",
+      color: "amber",
+    },
+    {
+      step: 4,
+      title: "Kelola Campaign",
+      desc: "Track progress sampai selesai",
+      icon: Briefcase,
+      href: "/campaign",
+      color: "emerald",
+    },
+  ] as const;
+
+  const colorMap = {
+    violet: {
+      bg: "bg-violet-100 dark:bg-violet-500/20",
+      text: "text-violet-600 dark:text-violet-400",
+      hover: "hover:border-violet-300 dark:hover:border-violet-700",
+      number: "bg-violet-600 text-white",
+    },
+    indigo: {
+      bg: "bg-indigo-100 dark:bg-indigo-500/20",
+      text: "text-indigo-600 dark:text-indigo-400",
+      hover: "hover:border-indigo-300 dark:hover:border-indigo-700",
+      number: "bg-indigo-600 text-white",
+    },
+    amber: {
+      bg: "bg-amber-100 dark:bg-amber-500/20",
+      text: "text-amber-600 dark:text-amber-400",
+      hover: "hover:border-amber-300 dark:hover:border-amber-700",
+      number: "bg-amber-600 text-white",
+    },
+    emerald: {
+      bg: "bg-emerald-100 dark:bg-emerald-500/20",
+      text: "text-emerald-600 dark:text-emerald-400",
+      hover: "hover:border-emerald-300 dark:hover:border-emerald-700",
+      number: "bg-emerald-600 text-white",
+    },
+  } as const;
 
   return (
     <div className="space-y-6">
@@ -122,11 +190,134 @@ export default function DashboardPage() {
         </Badge>
       </div>
 
+      {/* Panduan Cepat */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05, duration: 0.4 }}
+        className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] overflow-hidden"
+      >
+        <div className="px-5 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-500 shadow-sm shadow-violet-300/30 dark:shadow-violet-800/30">
+              <Compass className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <h2 className="text-base font-semibold text-gray-800 dark:text-white/90">
+                Panduan Cepat
+              </h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                4 langkah dari brief sampai campaign selesai
+              </p>
+            </div>
+          </div>
+          <Link href="/brief">
+            <Button size="sm">
+              <Rocket className="h-3.5 w-3.5" />
+              Mulai dari sini
+            </Button>
+          </Link>
+        </div>
+        <div className="p-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {guideSteps.map((step, index) => {
+              const colors = colorMap[step.color];
+              return (
+                <Link key={step.step} href={step.href} className="block">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + index * 0.05 }}
+                  >
+                    <Card className={`h-full transition-all duration-200 cursor-pointer group hover:shadow-md ${colors.hover}`}>
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${colors.number}`}>
+                            {step.step}
+                          </span>
+                          <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${colors.bg} group-hover:scale-110 transition-transform`}>
+                            <step.icon className={`h-4 w-4 ${colors.text}`} />
+                          </div>
+                        </div>
+                        <h3 className="text-sm font-semibold text-gray-800 dark:text-white/90">
+                          {step.title}
+                        </h3>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          {step.desc}
+                        </p>
+                        <div className="flex items-center gap-1 mt-3 text-xs font-medium text-violet-600 dark:text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span>Buka</span>
+                          <ArrowRight className="h-3 w-3" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Tentang KOLab AI — Collapsible */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+      >
+        <button
+          onClick={() => setShowAbout(!showAbout)}
+          className="flex items-center gap-2 text-xs text-slate-500 hover:text-violet-600 transition-colors"
+        >
+          <Layers className="h-3.5 w-3.5" />
+          <span>Tentang KOLab AI</span>
+          {showAbout ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+        </button>
+
+        <AnimatePresence>
+          {showAbout && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden"
+            >
+              <Card className="mt-2 border-slate-100 dark:border-slate-800">
+                <CardContent className="p-4 space-y-2">
+                  <p className="text-sm text-slate-700 dark:text-slate-300">
+                    <strong>KOLab AI</strong> adalah platform AI-powered yang bantu kamu jalanin influencer marketing campaign dari A sampai Z.
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
+                    <div className="flex items-start gap-2 rounded-lg bg-slate-50 p-2.5 dark:bg-slate-900">
+                      <FileText className="h-3.5 w-3.5 text-violet-500 shrink-0 mt-0.5" />
+                      <span><strong>Brief Parsing</strong> — AI baca brief kamu dan ekstrak semua info penting otomatis</span>
+                    </div>
+                    <div className="flex items-start gap-2 rounded-lg bg-slate-50 p-2.5 dark:bg-slate-900">
+                      <Search className="h-3.5 w-3.5 text-indigo-500 shrink-0 mt-0.5" />
+                      <span><strong>Semantic Search</strong> — Cari creator pakai bahasa sehari-hari, AI paham konteksnya</span>
+                    </div>
+                    <div className="flex items-start gap-2 rounded-lg bg-slate-50 p-2.5 dark:bg-slate-900">
+                      <Sparkles className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
+                      <span><strong>AI Matching</strong> — Cocokkan brief dengan creator berdasarkan personality dan audience</span>
+                    </div>
+                    <div className="flex items-start gap-2 rounded-lg bg-slate-50 p-2.5 dark:bg-slate-900">
+                      <BarChart3 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                      <span><strong>Campaign Tracking</strong> — Pantau progress setiap campaign di satu dashboard</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
       {/* Quick Actions */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.05 }}
+        transition={{ delay: 0.2 }}
         className="grid grid-cols-1 sm:grid-cols-3 gap-3"
       >
         <Link href="/brief" className="block">
@@ -165,58 +356,13 @@ export default function DashboardPage() {
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">Chat AI</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Tanya strategi & rekomendasi</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Tanya apa aja soal campaign</p>
               </div>
               <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
             </CardContent>
           </Card>
         </Link>
       </motion.div>
-
-      {/* Getting Started Guide — only show if few campaigns */}
-      {dashboardStats.totalCampaigns <= 5 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="rounded-2xl border border-violet-100 bg-gradient-to-r from-violet-50 to-indigo-50 p-5 dark:border-violet-900 dark:from-violet-950/30 dark:to-indigo-950/30"
-        >
-          <div className="flex items-start gap-3">
-            <Rocket className="h-5 w-5 text-violet-600 shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <h3 className="text-sm font-semibold text-violet-800 dark:text-violet-300">
-                Getting Started — Mulai Campaign Pertama
-              </h3>
-              <p className="text-xs text-violet-600 dark:text-violet-400 mt-1">
-                Ikuti langkah-langkah ini untuk memulai campaign influencer marketing kamu:
-              </p>
-              <div className="grid sm:grid-cols-3 gap-3 mt-3">
-                <div className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700 dark:bg-violet-800 dark:text-violet-300">1</span>
-                  <div>
-                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">Upload Brief</p>
-                    <p className="text-[11px] text-violet-500 dark:text-violet-400">Paste brief campaign, AI akan parsing otomatis</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700 dark:bg-violet-800 dark:text-violet-300">2</span>
-                  <div>
-                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">Cari Creator</p>
-                    <p className="text-[11px] text-violet-500 dark:text-violet-400">AI match creator berdasarkan brief kamu</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700 dark:bg-violet-800 dark:text-violet-300">3</span>
-                  <div>
-                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">Kelola Campaign</p>
-                    <p className="text-[11px] text-violet-500 dark:text-violet-400">Track progress dari matching sampai selesai</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
 
       {/* Metrics Grid */}
       <motion.div

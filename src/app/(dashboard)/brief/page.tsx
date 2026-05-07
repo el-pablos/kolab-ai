@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { StepIndicator } from "@/components/ui/step-indicator";
 import { ParsedBrief } from "@/types";
 
 export default function BriefPage() {
@@ -88,7 +89,19 @@ Requirements:
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      <StepIndicator currentStep={1} />
+
+      <motion.div
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-start gap-3 rounded-xl border-l-4 border-violet-500 bg-violet-50 px-4 py-3 dark:bg-violet-950/30"
+      >
+        <Info className="h-4 w-4 text-violet-600 shrink-0 mt-0.5" />
+        <p className="text-xs text-violet-700 dark:text-violet-300">
+          <strong>Langkah 1 dari 4</strong> — Upload campaign brief kamu di bawah. AI akan mengekstrak semua informasi penting secara otomatis. Setelah parsing selesai, lanjut ke Creator Discovery untuk mencari creator yang cocok.
+        </p>
+      </motion.div>
+
       <div>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
           Upload Campaign Brief

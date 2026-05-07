@@ -21,6 +21,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { StepIndicator } from "@/components/ui/step-indicator";
 import { sampleCampaigns } from "@/lib/data/campaigns";
 import Link from "next/link";
 
@@ -105,7 +106,19 @@ export default function CampaignPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      <StepIndicator currentStep={4} />
+
+      <motion.div
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-start gap-3 rounded-xl border-l-4 border-violet-500 bg-violet-50 px-4 py-3 dark:bg-violet-950/30"
+      >
+        <Info className="h-4 w-4 text-violet-600 shrink-0 mt-0.5" />
+        <p className="text-xs text-violet-700 dark:text-violet-300">
+          <strong>Langkah 4 dari 4</strong> — Kelola semua campaign kamu di sini. Track progress dari brief hingga completion.
+        </p>
+      </motion.div>
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">

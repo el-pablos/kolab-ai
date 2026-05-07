@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { StepIndicator } from "@/components/ui/step-indicator";
 import { Creator, MatchResult } from "@/types";
 import { getAllCreators } from "@/lib/data/creator-store";
 
@@ -176,7 +177,19 @@ export default function CreatorsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      <StepIndicator currentStep={2} />
+
+      <motion.div
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-start gap-3 rounded-xl border-l-4 border-violet-500 bg-violet-50 px-4 py-3 dark:bg-violet-950/30"
+      >
+        <Info className="h-4 w-4 text-violet-600 shrink-0 mt-0.5" />
+        <p className="text-xs text-violet-700 dark:text-violet-300">
+          <strong>Langkah 2 dari 4</strong> — Cari creator yang cocok untuk campaign kamu. Gunakan AI Search untuk pencarian semantik, atau klik &apos;Tambah Creator&apos; untuk analisis creator baru dari URL sosmed.
+        </p>
+      </motion.div>
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
