@@ -24,7 +24,7 @@ export function getGeminiClient(): GoogleGenerativeAI {
  * Get Gemini generative model instance
  * Default: gemini-2.0-flash (fast, capable)
  */
-export function getModel(modelName = "gemini-2.0-flash"): GenerativeModel {
+export function getModel(modelName = "gemini-2.5-flash"): GenerativeModel {
   if (!model) {
     const client = getGeminiClient();
     model = client.getGenerativeModel({ model: modelName });

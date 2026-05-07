@@ -114,7 +114,7 @@ export default function ChatPage() {
         </div>
         <Badge variant="default" className="gap-1">
           <Sparkles className="h-3 w-3" />
-          Gemini 2.0 Flash
+          Gemini 2.5 Flash
         </Badge>
       </div>
 
@@ -233,7 +233,7 @@ export default function ChatPage() {
               </Button>
             </div>
             <p className="text-[11px] text-slate-400 mt-2 text-center">
-              Powered by Google Gemini 2.0 Flash • KOLab AI memahami konteks Indonesia
+              Powered by Google Gemini 2.5 Flash • KOLab AI memahami konteks Indonesia
             </p>
           </div>
         </CardContent>

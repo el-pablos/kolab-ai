@@ -170,7 +170,7 @@ export default function LandingPage() {
                 <span className="relative block w-2 h-2 rounded-full bg-emerald-400" />
               </span>
               <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
-                Powered by Google Gemini AI
+                Powered by Google Gemini 2.5 Flash
               </span>
             </motion.div>
 
@@ -394,7 +394,7 @@ export default function LandingPage() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               {[
-                { name: "Google Gemini 2.0", color: "border-blue-200 bg-blue-50 text-blue-700" },
+                { name: "Google Gemini 2.5", color: "border-blue-200 bg-blue-50 text-blue-700" },
                 { name: "Next.js 16", color: "border-slate-200 bg-slate-50 text-slate-700" },
                 { name: "TypeScript", color: "border-blue-200 bg-blue-50 text-blue-700" },
                 { name: "Tailwind CSS", color: "border-cyan-200 bg-cyan-50 text-cyan-700" },
