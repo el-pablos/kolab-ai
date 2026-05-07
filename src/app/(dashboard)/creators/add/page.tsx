@@ -204,7 +204,7 @@ export default function AddCreatorPage() {
               </div>
               <div className="text-[11px] text-slate-400 mt-4 border-t border-slate-100 pt-3 space-y-1 dark:border-slate-800">
                 <p>Powered by Google Gemini 2.5 Flash</p>
-                <p>⚠️ AI menganalisis berdasarkan knowledge base, bukan live scraping. Untuk creator terkenal, data cukup akurat. Untuk creator kecil/baru, AI memberikan estimasi realistis yang bisa diedit manual.</p>
+                <p>AI menganalisis berdasarkan knowledge base, bukan live scraping. Untuk creator terkenal, data cukup akurat. Untuk creator kecil/baru, AI memberikan estimasi realistis yang bisa diedit manual.</p>
               </div>
             </CardContent>
           </Card>
@@ -233,7 +233,7 @@ export default function AddCreatorPage() {
                       animate={{ opacity: i <= loadingStep ? 1 : 0.3 }}
                       className={`text-sm ${i <= loadingStep ? "text-violet-600 font-medium" : "text-slate-300"}`}
                     >
-                      {i < loadingStep ? "✓" : i === loadingStep ? "⏳" : "○"} {step}
+                      {i < loadingStep ? "—" : i === loadingStep ? "›" : "·"} {step}
                     </motion.p>
                   ))}
                 </div>
@@ -318,7 +318,7 @@ export default function AddCreatorPage() {
                     {creator.personality && (
                       <div className="mt-4 rounded-lg bg-violet-50 p-4 dark:bg-violet-950">
                         <p className="text-xs font-medium text-violet-700 mb-1 dark:text-violet-300">
-                          🧠 AI Personality Analysis
+                          AI Personality Analysis
                         </p>
                         <p className="text-sm text-violet-800 dark:text-violet-200">
                           {creator.personality.description}

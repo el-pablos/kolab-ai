@@ -158,7 +158,7 @@ Requirements:
                       </div>
                     </div>
                     <p className="text-xs text-violet-500 italic">
-                      💡 Tips: Semakin detail brief kamu, semakin akurat hasil parsing AI-nya.
+                      Tips: Semakin detail brief kamu, semakin akurat hasil parsing AI-nya.
                     </p>
                   </div>
                 </motion.div>

@@ -113,7 +113,7 @@ function CreatorCard({
               {/* AI Reasoning */}
               {reasoning && (
                 <p className="mt-2 text-xs text-violet-600 bg-violet-50 rounded-md px-2 py-1 dark:bg-violet-950 dark:text-violet-300">
-                  💡 {reasoning}
+                  {reasoning}
                 </p>
               )}
 
@@ -301,7 +301,7 @@ export default function CreatorsPage() {
                       </ul>
                     </div>
                     <div>
-                      <p className="font-medium text-slate-700 dark:text-slate-300 mb-2">💡 Yang Bisa Kamu Deskripsikan:</p>
+                      <p className="font-medium text-slate-700 dark:text-slate-300 mb-2">Yang Bisa Kamu Deskripsikan:</p>
                       <ul className="space-y-1.5 text-slate-500">
                         <li>• <strong>Personality:</strong> chaotic, calm, educational, funny</li>
                         <li>• <strong>Audience:</strong> ibu-ibu, gen-z, profesional muda</li>

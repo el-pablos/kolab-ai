@@ -163,7 +163,7 @@ export default function ChatPage() {
                     <Bot className="h-8 w-8 text-violet-600 dark:text-violet-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300">
-                    Halo! Gw KOLab AI 👋
+                    Halo! Gw KOLab AI
                   </h3>
                   <p className="text-sm text-slate-500 mt-1 max-w-md">
                     Gw bisa bantu lu cari creator, analisis campaign, kasih rekomendasi strategi,

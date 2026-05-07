@@ -141,10 +141,10 @@ export default function LandingPage() {
             >
               <div className="w-48 backdrop-blur-md border border-white/30 rounded-2xl p-4 flex flex-col items-center rotate-[-8deg] shadow-2xl hover:rotate-0 transition-transform duration-500"
                 style={{ background: "rgba(255,255,255,0.15)" }}>
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-300 to-indigo-400 flex items-center justify-center text-white font-bold text-xl border-2 border-white/40">
-                  🎯
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-300 to-indigo-400 flex items-center justify-center border-2 border-white/40">
+                  <Target className="h-7 w-7 text-white" />
                 </div>
-                <p className="font-bold text-sm text-white mt-3">98% Accuracy</p>
+                <p className="font-bold text-sm text-white mt-3">AI Matching</p>
                 <p className="text-[10px] text-white/70 mt-0.5">AI Matching Score</p>
               </div>
             </motion.div>
@@ -156,8 +156,8 @@ export default function LandingPage() {
             >
               <div className="w-48 backdrop-blur-md border border-white/30 rounded-2xl p-4 flex flex-col items-center rotate-[8deg] shadow-2xl hover:rotate-0 transition-transform duration-500"
                 style={{ background: "rgba(255,255,255,0.15)" }}>
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-300 to-teal-400 flex items-center justify-center text-white font-bold text-xl border-2 border-white/40">
-                  🚀
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-300 to-teal-400 flex items-center justify-center border-2 border-white/40">
+                  <Users className="h-7 w-7 text-white" />
                 </div>
                 <p className="font-bold text-sm text-white mt-3">156+ Creators</p>
                 <p className="text-[10px] text-white/70 mt-0.5">Indonesian KOLs</p>
@@ -405,17 +405,17 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {[
                 {
-                  emoji: "🔗",
+                  icon: Link2,
                   title: "Paste URL Sosmed",
                   desc: "User cukup paste URL profil TikTok, Instagram, atau YouTube creator. Tidak perlu registrasi, tidak perlu scraping manual.",
                 },
                 {
-                  emoji: "🤖",
+                  icon: Brain,
                   title: "AI Analisis Otomatis",
                   desc: "Gemini AI menganalisis creator berdasarkan knowledge base-nya — mengenali personality, niche, audience demographics, dan engagement pattern secara otomatis.",
                 },
                 {
-                  emoji: "📊",
+                  icon: BarChart3,
                   title: "Profil Intelligence",
                   desc: "AI menghasilkan profil lengkap: personality embedding, trust score, audience analysis, dan pricing estimation. Siap untuk matching.",
                 },
@@ -428,7 +428,9 @@ export default function LandingPage() {
                   transition={{ delay: index * 0.1 }}
                   className="text-center p-6 rounded-2xl border border-violet-100 bg-white"
                 >
-                  <div className="text-4xl mb-4">{item.emoji}</div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-100 to-indigo-100 mb-4 mx-auto">
+                    <item.icon className="h-6 w-6 text-violet-600" />
+                  </div>
                   <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
                   <p className="mt-2 text-sm text-slate-500 leading-relaxed">{item.desc}</p>
                 </motion.div>
@@ -530,7 +532,7 @@ export default function LandingPage() {
               <span className="text-lg font-bold gradient-text">KOLab AI</span>
             </div>
             <p className="text-sm text-slate-500">
-              Built with ❤️ for #JuaraVibeCoding 2026 — Powered by Google Gemini AI
+              Built for #JuaraVibeCoding 2026 — Powered by Google Gemini AI
             </p>
             <p className="mt-1 text-xs text-slate-400">
               © 2026 El Pablo. All rights reserved.
