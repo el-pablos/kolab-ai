@@ -107,7 +107,7 @@ export default function ChatPage() {
           id: `msg-${Date.now()}-error`,
           role: "assistant",
           content:
-            "Hmm, ada masalah nih. Server lagi sibuk atau ada error di sisi kami. Coba lagi dalam beberapa detik ya! 🙏",
+            "Hmm, ada masalah nih. Server lagi sibuk atau ada error di sisi kami. Coba lagi dalam beberapa detik ya.",
           timestamp: new Date().toISOString(),
         };
         setMessages((prev) => [...prev, assistantMessage]);

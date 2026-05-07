@@ -292,7 +292,7 @@ export default function CreatorsPage() {
                 <CardContent className="p-4">
                   <div className="grid md:grid-cols-2 gap-4 text-xs">
                     <div>
-                      <p className="font-medium text-slate-700 dark:text-slate-300 mb-2">✅ Pencarian yang Bagus:</p>
+                      <p className="font-medium text-slate-700 dark:text-slate-300 mb-2">Pencarian yang Bagus:</p>
                       <ul className="space-y-1.5 text-slate-500">
                         <li>&quot;Creator beauty yang tone-nya calm dan educational&quot;</li>
                         <li>&quot;Micro-influencer food Jakarta yang audience-nya keluarga&quot;</li>
