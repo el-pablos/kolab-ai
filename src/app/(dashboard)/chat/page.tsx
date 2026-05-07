@@ -93,10 +93,12 @@ export default function ChatPage() {
 
       if (response.ok) {
         const data = await response.json();
+        // Handle both old format {response} and new format {data: {response}}
+        const aiResponse = data.data?.response || data.response || "Maaf, tidak ada respons dari AI.";
         const assistantMessage: ChatMessage = {
           id: `msg-${Date.now()}-ai`,
           role: "assistant",
-          content: data.response,
+          content: aiResponse,
           timestamp: new Date().toISOString(),
         };
         setMessages((prev) => [...prev, assistantMessage]);
@@ -236,7 +238,7 @@ export default function ChatPage() {
                       }`}
                     >
                       {/* Error indicator for error messages */}
-                      {msg.role === "assistant" && msg.content.includes("gagal") && (
+                      {msg.role === "assistant" && msg.content?.includes("gagal") && (
                         <div className="flex items-center gap-1.5 mb-2 text-amber-600 dark:text-amber-400">
                           <AlertCircle className="h-3.5 w-3.5" />
                           <span className="text-xs font-medium">Ada masalah</span>
@@ -246,7 +248,7 @@ export default function ChatPage() {
                         {msg.content}
                       </p>
                       {/* Retry hint for error messages */}
-                      {msg.role === "assistant" && (msg.content.includes("gagal") || msg.content.includes("error") || msg.content.includes("masalah")) && (
+                      {msg.role === "assistant" && (msg.content?.includes("gagal") || msg.content?.includes("error") || msg.content?.includes("masalah")) && (
                         <div className="flex items-center gap-1 mt-2 text-xs text-slate-400">
                           <RefreshCw className="h-3 w-3" />
                           <span>Kirim ulang pesan untuk coba lagi</span>

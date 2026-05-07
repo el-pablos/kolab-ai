@@ -156,7 +156,8 @@ export default function CreatorsPage() {
 
       if (response.ok) {
         const data = await response.json();
-        setSearchResults(data.results);
+        // Handle both old format {results} and new format {data: {results}}
+        setSearchResults(data.data?.results || data.results || []);
       }
     } catch (error) {
       console.error("Search error:", error);

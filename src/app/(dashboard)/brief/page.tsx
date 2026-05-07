@@ -53,7 +53,8 @@ export default function BriefPage() {
       }
 
       const data = await response.json();
-      setParsedBrief(data.result);
+      // Handle both old format {result} and new format {data: {result}}
+      setParsedBrief(data.data?.result || data.result);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Terjadi kesalahan");
     } finally {
