@@ -254,10 +254,10 @@ export default function LandingPage() {
               className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
             >
               {[
-                { value: "156+", label: "Creator Profiles" },
-                { value: "98%", label: "Akurasi Matching" },
+                { value: "10+", label: "Seed Creators" },
+                { value: "AI", label: "Powered Matching" },
                 { value: "< 5s", label: "Brief Parsing" },
-                { value: "10+", label: "Niche Indonesia" },
+                { value: "∞", label: "Tambah via URL" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-3xl md:text-4xl font-black text-white">

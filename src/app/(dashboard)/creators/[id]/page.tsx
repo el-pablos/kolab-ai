@@ -25,7 +25,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { creators } from "@/lib/data/creators";
+import { getAllCreators } from "@/lib/data/creator-store";
+import { Creator } from "@/types";
 
 function formatFollowers(count: number): string {
   if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
@@ -52,7 +53,8 @@ function MetricTooltip({ text }: { text: string }) {
 export default function CreatorProfilePage() {
   const params = useParams();
   const creatorId = params.id as string;
-  const creator = creators.find((c) => c.id === creatorId);
+  const allCreators = getAllCreators();
+  const creator = allCreators.find((c: Creator) => c.id === creatorId);
   const [showMetricInfo, setShowMetricInfo] = useState(false);
 
   if (!creator) {

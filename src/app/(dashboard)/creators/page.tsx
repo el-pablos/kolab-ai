@@ -25,8 +25,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { creators } from "@/lib/data/creators";
 import { Creator, MatchResult } from "@/types";
+import { getAllCreators } from "@/lib/data/creator-store";
 
 function formatFollowers(count: number): string {
   if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
@@ -143,6 +143,7 @@ export default function CreatorsPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<MatchResult[] | null>(null);
   const [showTips, setShowTips] = useState(false);
+  const creators = getAllCreators();
 
   const handleSearch = async () => {
     if (!query.trim()) return;

@@ -22,6 +22,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Creator } from "@/types";
+import { addCreator } from "@/lib/data/creator-store";
 
 function detectPlatform(url: string): string | null {
   const lower = url.toLowerCase();
@@ -342,7 +343,12 @@ export default function AddCreatorPage() {
                     <div className="flex gap-3 mt-6">
                       <Button
                         className="flex-1"
-                        onClick={() => setSaved(true)}
+                        onClick={() => {
+                          if (creator) {
+                            addCreator(creator);
+                            setSaved(true);
+                          }
+                        }}
                         disabled={saved}
                       >
                         {saved ? (
