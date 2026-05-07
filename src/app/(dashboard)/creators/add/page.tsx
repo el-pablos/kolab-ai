@@ -188,7 +188,7 @@ export default function AddCreatorPage() {
               <div className="space-y-3">
                 {[
                   { step: "1", title: "Paste URL", desc: "Masukkan URL profil TikTok, Instagram, atau YouTube" },
-                  { step: "2", title: "AI Analisis", desc: "Gemini AI membaca profil publik dan menganalisis personality, audience, dan engagement" },
+                  { step: "2", title: "AI Analisis", desc: "Gemini AI menganalisis creator berdasarkan knowledge base — personality, audience, dan engagement" },
                   { step: "3", title: "Profil Siap", desc: "Creator profile lengkap siap untuk matching dengan campaign" },
                 ].map((item) => (
                   <div key={item.step} className="flex items-start gap-3">
