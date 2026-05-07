@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useSidebar } from "@/context/sidebar-context";
 import {
   LayoutDashboard,
   FileText,
@@ -12,113 +13,129 @@ import {
   Briefcase,
   Sparkles,
   Settings,
-  ChevronLeft,
-  ChevronRight,
+  HelpCircle,
 } from "lucide-react";
 
-interface SidebarProps {
-  collapsed: boolean;
-  onToggle: () => void;
+interface NavItem {
+  label: string;
+  href: string;
+  icon: React.ElementType;
 }
 
-const navItems = [
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Upload Brief",
-    href: "/brief",
-    icon: FileText,
-  },
-  {
-    label: "Creator Discovery",
-    href: "/creators",
-    icon: Users,
-  },
-  {
-    label: "Campaign",
-    href: "/campaign",
-    icon: Briefcase,
-  },
-  {
-    label: "AI Assistant",
-    href: "/chat",
-    icon: MessageSquare,
-  },
+const navItems: NavItem[] = [
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Upload Brief", href: "/brief", icon: FileText },
+  { label: "Creator Discovery", href: "/creators", icon: Users },
+  { label: "Campaign", href: "/campaign", icon: Briefcase },
+  { label: "AI Assistant", href: "/chat", icon: MessageSquare },
 ];
 
-export function Sidebar({ collapsed, onToggle }: SidebarProps) {
+const bottomItems: NavItem[] = [
+  { label: "Help & Support", href: "#", icon: HelpCircle },
+  { label: "Settings", href: "#", icon: Settings },
+];
+
+export function Sidebar() {
+  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+
+  const isActive = (path: string) =>
+    pathname === path || pathname?.startsWith(path + "/");
+
+  const showFull = isExpanded || isHovered || isMobileOpen;
 
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 z-40 h-screen border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-800 dark:bg-slate-950",
-        collapsed ? "w-[70px]" : "w-[260px]"
+        "fixed left-0 top-0 z-50 flex h-screen flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300 ease-in-out",
+        showFull ? "w-[290px]" : "w-[90px]",
+        isMobileOpen ? "translate-x-0" : "-translate-x-full",
+        "lg:translate-x-0"
       )}
+      onMouseEnter={() => !isExpanded && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Logo */}
-      <div className="flex h-16 items-center justify-between border-b border-slate-200 px-4 dark:border-slate-800">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 shadow-lg shadow-violet-500/20">
+      <div
+        className={cn(
+          "flex h-[72px] items-center border-b border-gray-200 dark:border-gray-800 px-5 shrink-0",
+          !showFull && "justify-center"
+        )}
+      >
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 shadow-lg shadow-violet-500/20">
             <Sparkles className="h-5 w-5 text-white" />
           </div>
-          {!collapsed && (
-            <span className="text-lg font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
+          {showFull && (
+            <span className="text-xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
               KOLab AI
             </span>
           )}
         </Link>
-        <button
-          onClick={onToggle}
-          className="flex h-7 w-7 items-center justify-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-        >
-          {collapsed ? (
-            <ChevronRight className="h-4 w-4 text-slate-500" />
-          ) : (
-            <ChevronLeft className="h-4 w-4 text-slate-500" />
-          )}
-        </button>
       </div>
 
       {/* Navigation */}
-      <nav className="flex flex-col gap-1 p-3 mt-2">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
-                isActive
-                  ? "bg-gradient-to-r from-violet-50 to-indigo-50 text-violet-700 shadow-sm border border-violet-100 dark:from-violet-950 dark:to-indigo-950 dark:text-violet-300 dark:border-violet-800"
-                  : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-              )}
-            >
-              <item.icon
+      <div className="flex flex-1 flex-col overflow-y-auto px-4 py-6">
+        {/* Menu label */}
+        <div
+          className={cn(
+            "mb-4 text-xs font-medium uppercase tracking-wider text-gray-400",
+            !showFull && "text-center"
+          )}
+        >
+          {showFull ? "Menu" : "•••"}
+        </div>
+
+        {/* Nav items */}
+        <nav className="flex flex-col gap-1">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
                 className={cn(
-                  "h-5 w-5 shrink-0",
-                  isActive ? "text-violet-600 dark:text-violet-400" : ""
+                  "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
+                  !showFull && "justify-center",
+                  active
+                    ? "bg-violet-50 text-violet-700 dark:bg-violet-500/10 dark:text-violet-300"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
                 )}
-              />
-              {!collapsed && <span>{item.label}</span>}
-            </Link>
-          );
-        })}
-      </nav>
+              >
+                <span
+                  className={cn(
+                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors",
+                    active
+                      ? "bg-violet-100 text-violet-600 dark:bg-violet-500/20 dark:text-violet-400"
+                      : "text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-200"
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                </span>
+                {showFull && <span>{item.label}</span>}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
 
       {/* Bottom section */}
-      <div className="absolute bottom-4 left-0 right-0 px-3">
-        <Link
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors dark:text-slate-400 dark:hover:bg-slate-800"
-        >
-          <Settings className="h-5 w-5 shrink-0" />
-          {!collapsed && <span>Settings</span>}
-        </Link>
+      <div className="shrink-0 border-t border-gray-200 dark:border-gray-800 px-4 py-4">
+        <nav className="flex flex-col gap-1">
+          {bottomItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={cn(
+                "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white",
+                !showFull && "justify-center"
+              )}
+            >
+              <item.icon className="h-5 w-5 shrink-0 text-gray-400" />
+              {showFull && <span>{item.label}</span>}
+            </Link>
+          ))}
+        </nav>
       </div>
     </aside>
   );
