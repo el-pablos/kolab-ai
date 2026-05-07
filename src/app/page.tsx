@@ -59,7 +59,7 @@ const features = [
     icon: Link2,
     title: "Tambah Creator via URL",
     description:
-      "Paste URL TikTok/Instagram/YouTube — AI langsung analisis profil publik dan generate personality profile. Tanpa scraping, tanpa registrasi.",
+      "Paste URL TikTok/Instagram/YouTube — AI menganalisis creator dan generate personality profile berdasarkan knowledge base. Tanpa scraping, tanpa registrasi.",
   },
 ];
 
@@ -412,7 +412,7 @@ export default function LandingPage() {
                 {
                   emoji: "🤖",
                   title: "AI Analisis Otomatis",
-                  desc: "Gemini AI membaca profil publik creator dan menganalisis personality, niche, audience demographics, dan engagement quality secara otomatis.",
+                  desc: "Gemini AI menganalisis creator berdasarkan knowledge base-nya — mengenali personality, niche, audience demographics, dan engagement pattern secara otomatis.",
                 },
                 {
                   emoji: "📊",
@@ -441,7 +441,7 @@ export default function LandingPage() {
               viewport={{ once: true }}
               className="text-center mt-8 text-sm text-slate-400 max-w-xl mx-auto"
             >
-              Tidak ada creator yang perlu &quot;daftar&quot; ke platform kami. Data diambil dari profil publik yang bisa dilihat siapa saja. AI hanya menganalisis dan memberikan intelligence layer di atasnya.
+              Creator tidak perlu &quot;daftar&quot; ke platform kami. AI menganalisis berdasarkan knowledge tentang creator publik dan menghasilkan intelligence profile. Untuk creator yang belum dikenal AI, sistem memberikan estimasi realistis berdasarkan platform dan niche.
             </motion.p>
           </div>
         </section>

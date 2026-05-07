@@ -26,7 +26,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { dashboardStats, sampleCampaigns } from "@/lib/data/campaigns";
-import { creators } from "@/lib/data/creators";
+import { getAllCreators } from "@/lib/data/creator-store";
 
 const statCards = [
   {
@@ -102,6 +102,8 @@ function getStatusBadge(status: string) {
 }
 
 export default function DashboardPage() {
+  const creators = getAllCreators();
+
   return (
     <div className="space-y-6">
       {/* Welcome Header */}

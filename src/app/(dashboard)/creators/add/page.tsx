@@ -202,9 +202,10 @@ export default function AddCreatorPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-[11px] text-slate-400 mt-4 border-t border-slate-100 pt-3 dark:border-slate-800">
-                Powered by Google Gemini 2.5 Flash — Data diambil dari profil publik, bukan scraping.
-              </p>
+              <div className="text-[11px] text-slate-400 mt-4 border-t border-slate-100 pt-3 space-y-1 dark:border-slate-800">
+                <p>Powered by Google Gemini 2.5 Flash</p>
+                <p>⚠️ AI menganalisis berdasarkan knowledge base, bukan live scraping. Untuk creator terkenal, data cukup akurat. Untuk creator kecil/baru, AI memberikan estimasi realistis yang bisa diedit manual.</p>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -262,10 +263,16 @@ export default function AddCreatorPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                <div className="flex items-center gap-2 text-emerald-600 mb-2">
-                  <CheckCircle2 className="h-5 w-5" />
-                  <span className="text-sm font-medium">Profil berhasil dianalisis oleh AI</span>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2 text-emerald-600">
+                    <CheckCircle2 className="h-5 w-5" />
+                    <span className="text-sm font-medium">Profil berhasil dianalisis oleh AI</span>
+                  </div>
+                  <Badge variant="warning" className="text-[10px]">AI Estimation</Badge>
                 </div>
+                <p className="text-[11px] text-amber-600 bg-amber-50 rounded-md px-2 py-1 mb-3 dark:bg-amber-950 dark:text-amber-300">
+                  Data di bawah adalah estimasi AI berdasarkan knowledge base Gemini. Angka mungkin tidak 100% akurat — verifikasi manual disarankan.
+                </p>
 
                 <Card>
                   <CardContent className="p-6">
