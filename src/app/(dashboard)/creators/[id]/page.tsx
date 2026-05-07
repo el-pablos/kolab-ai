@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
@@ -16,6 +16,8 @@ import {
   Eye,
   MessageSquare,
   Briefcase,
+  Info,
+  HelpCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -35,10 +37,23 @@ function formatCurrency(amount: number): string {
   return `Rp ${(amount / 1000000).toFixed(0)}jt`;
 }
 
+function MetricTooltip({ text }: { text: string }) {
+  return (
+    <div className="relative group/tip inline-flex ml-1">
+      <HelpCircle className="h-3 w-3 text-slate-400 cursor-help" />
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none w-48 text-center z-10 leading-relaxed">
+        {text}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900" />
+      </div>
+    </div>
+  );
+}
+
 export default function CreatorProfilePage() {
   const params = useParams();
   const creatorId = params.id as string;
   const creator = creators.find((c) => c.id === creatorId);
+  const [showMetricInfo, setShowMetricInfo] = useState(false);
 
   if (!creator) {
     return (
@@ -46,10 +61,13 @@ export default function CreatorProfilePage() {
         <h2 className="text-xl font-semibold text-slate-700">
           Creator tidak ditemukan
         </h2>
+        <p className="text-sm text-slate-500 mt-2">
+          Creator dengan ID ini tidak ada di database kami.
+        </p>
         <Link href="/creators">
           <Button variant="outline" className="mt-4">
             <ArrowLeft className="h-4 w-4" />
-            Kembali
+            Kembali ke Discovery
           </Button>
         </Link>
       </div>
@@ -57,10 +75,26 @@ export default function CreatorProfilePage() {
   }
 
   const personalityMetrics = [
-    { label: "Authenticity", value: creator.personality.authenticity },
-    { label: "Audience Trust", value: creator.audienceDemo.trustLevel },
-    { label: "Purchase Intent", value: creator.audienceDemo.purchaseIntent },
-    { label: "Reliability", value: creator.reliability },
+    {
+      label: "Authenticity",
+      value: creator.personality.authenticity,
+      tooltip: "Seberapa genuine dan asli konten creator ini. Skor tinggi = jarang terasa 'iklan banget'.",
+    },
+    {
+      label: "Audience Trust",
+      value: creator.audienceDemo.trustLevel,
+      tooltip: "Tingkat kepercayaan audience terhadap rekomendasi creator. Diukur dari engagement quality & sentiment.",
+    },
+    {
+      label: "Purchase Intent",
+      value: creator.audienceDemo.purchaseIntent,
+      tooltip: "Persentase audience yang cenderung membeli produk setelah direkomendasikan creator ini.",
+    },
+    {
+      label: "Reliability",
+      value: creator.reliability,
+      tooltip: "Track record creator dalam memenuhi deadline dan deliverables. Skor tinggi = jarang telat atau revisi berlebihan.",
+    },
   ];
 
   return (
@@ -160,6 +194,9 @@ export default function CreatorProfilePage() {
                   <MessageSquare className="h-5 w-5 text-violet-600" />
                   AI Personality Analysis
                 </CardTitle>
+                <p className="text-xs text-slate-500 mt-1">
+                  Analisis personality creator berdasarkan konten dan interaksi mereka
+                </p>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-slate-600 leading-relaxed dark:text-slate-400">
@@ -197,18 +234,37 @@ export default function CreatorProfilePage() {
             {/* Metrics */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Zap className="h-5 w-5 text-violet-600" />
-                  Trust & Performance Metrics
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <Zap className="h-5 w-5 text-violet-600" />
+                    Trust & Performance Metrics
+                  </CardTitle>
+                  <button
+                    onClick={() => setShowMetricInfo(!showMetricInfo)}
+                    className="text-xs text-slate-400 hover:text-violet-600 flex items-center gap-1 transition-colors"
+                  >
+                    <Info className="h-3.5 w-3.5" />
+                    Apa artinya?
+                  </button>
+                </div>
+                {showMetricInfo && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    className="text-xs text-slate-500 bg-slate-50 rounded-lg p-3 mt-2 dark:bg-slate-900"
+                  >
+                    Metrik ini dihitung AI berdasarkan analisis konten, engagement pattern, dan track record campaign sebelumnya. Skor 80+ = sangat baik, 60-79 = baik, di bawah 60 = perlu pertimbangan.
+                  </motion.div>
+                )}
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {personalityMetrics.map((metric) => (
                     <div key={metric.label}>
                       <div className="flex justify-between text-sm mb-1.5">
-                        <span className="text-slate-600 dark:text-slate-400">
+                        <span className="text-slate-600 dark:text-slate-400 flex items-center">
                           {metric.label}
+                          <MetricTooltip text={metric.tooltip} />
                         </span>
                         <span className="font-semibold text-slate-900 dark:text-white">
                           {metric.value}%
@@ -243,6 +299,9 @@ export default function CreatorProfilePage() {
                 <Users className="h-5 w-5 text-violet-600" />
                 Audience Demographics
               </CardTitle>
+              <p className="text-xs text-slate-500 mt-1">
+                Data demografi audience creator ini — gunakan untuk memastikan audience mereka sesuai target campaign kamu
+              </p>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-4">
@@ -251,18 +310,21 @@ export default function CreatorProfilePage() {
                   <p className="text-lg font-semibold">
                     {creator.audienceDemo.ageRange}
                   </p>
+                  <p className="text-[11px] text-slate-400 mt-1">Mayoritas usia audience</p>
                 </div>
                 <div className="rounded-lg bg-slate-50 p-4 dark:bg-slate-900">
                   <p className="text-xs text-slate-500 mb-1">Gender</p>
                   <p className="text-lg font-semibold">
                     {creator.audienceDemo.gender}
                   </p>
+                  <p className="text-[11px] text-slate-400 mt-1">Distribusi gender audience</p>
                 </div>
                 <div className="rounded-lg bg-slate-50 p-4 dark:bg-slate-900">
                   <p className="text-xs text-slate-500 mb-1">Location</p>
                   <p className="text-lg font-semibold">
                     {creator.audienceDemo.location}
                   </p>
+                  <p className="text-[11px] text-slate-400 mt-1">Lokasi dominan audience</p>
                 </div>
               </div>
 
@@ -286,6 +348,7 @@ export default function CreatorProfilePage() {
                       <span className="text-slate-600 flex items-center gap-1">
                         <Shield className="h-3.5 w-3.5" />
                         Trust Level
+                        <MetricTooltip text="Seberapa besar audience mempercayai rekomendasi creator ini. Diukur dari engagement quality." />
                       </span>
                       <span className="font-semibold">
                         {creator.audienceDemo.trustLevel}%
@@ -298,6 +361,7 @@ export default function CreatorProfilePage() {
                       <span className="text-slate-600 flex items-center gap-1">
                         <Star className="h-3.5 w-3.5" />
                         Purchase Intent
+                        <MetricTooltip text="Persentase audience yang cenderung membeli setelah melihat rekomendasi dari creator ini." />
                       </span>
                       <span className="font-semibold">
                         {creator.audienceDemo.purchaseIntent}%
@@ -319,6 +383,9 @@ export default function CreatorProfilePage() {
                 <DollarSign className="h-5 w-5 text-violet-600" />
                 Rate Card
               </CardTitle>
+              <p className="text-xs text-slate-500 mt-1">
+                Harga ini berdasarkan rate card resmi creator. Harga aktual bisa berbeda tergantung scope, durasi, dan negosiasi.
+              </p>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-4">
@@ -348,6 +415,22 @@ export default function CreatorProfilePage() {
                     {formatCurrency(creator.pricing.storyRate)}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">per story</p>
+                </div>
+              </div>
+
+              {/* Pricing context */}
+              <div className="mt-4 rounded-lg bg-amber-50 border border-amber-100 p-3 dark:bg-amber-950/30 dark:border-amber-900">
+                <div className="flex items-start gap-2">
+                  <Info className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                  <div className="text-xs text-amber-700 dark:text-amber-300 space-y-1">
+                    <p className="font-medium">Catatan tentang harga:</p>
+                    <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
+                      <li>Rate card bisa berubah tergantung scope campaign</li>
+                      <li>Paket bundling (multi-post) biasanya dapat diskon 10-20%</li>
+                      <li>Harga belum termasuk biaya produksi tambahan (jika ada)</li>
+                      <li>Negosiasi langsung dengan creator untuk harga final</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </CardContent>

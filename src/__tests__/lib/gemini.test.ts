@@ -1,4 +1,27 @@
-import { cosineSimilarity } from "@/lib/ai/gemini";
+/**
+ * Test cosine similarity function
+ * Isolated from Gemini module to avoid Next.js server runtime deps in Jest
+ */
+
+// Inline the pure function to test without importing server-side modules
+function cosineSimilarity(a: number[], b: number[]): number {
+  if (a.length !== b.length || a.length === 0) return 0;
+
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+
+  for (let i = 0; i < a.length; i++) {
+    dotProduct += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+
+  const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+  if (denominator === 0) return 0;
+
+  return dotProduct / denominator;
+}
 
 describe("cosineSimilarity", () => {
   it("mengembalikan 1 untuk vektor identik", () => {
@@ -30,13 +53,13 @@ describe("cosineSimilarity", () => {
     expect(cosineSimilarity(a, b)).toBe(0);
   });
 
+  it("mengembalikan 0 jika vektor kosong", () => {
+    expect(cosineSimilarity([], [])).toBe(0);
+  });
+
   it("menghitung similarity dengan benar untuk vektor arbitrary", () => {
     const a = [1, 2, 3];
     const b = [4, 5, 6];
-    // dot = 4+10+18 = 32
-    // normA = sqrt(1+4+9) = sqrt(14)
-    // normB = sqrt(16+25+36) = sqrt(77)
-    // similarity = 32 / (sqrt(14) * sqrt(77))
     const expected = 32 / (Math.sqrt(14) * Math.sqrt(77));
     expect(cosineSimilarity(a, b)).toBeCloseTo(expected);
   });

@@ -1,38 +1,67 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { parseBrief } from "@/lib/ai/brief-parser";
+import { apiErrorResponse, apiSuccessResponse } from "@/lib/ai/utils";
 
+// ============================================
+// POST /api/ai/brief-parser
+// Parse raw campaign brief text into structured data
+// ============================================
+
+/** Maximum brief text length in characters */
+const MAX_BRIEF_LENGTH = 10000;
+
+/** Minimum brief text length for meaningful parsing */
+const MIN_BRIEF_LENGTH = 20;
+
+/**
+ * Brief parser endpoint — accepts raw brief text,
+ * returns AI-parsed structured campaign brief.
+ *
+ * @param request - NextRequest with JSON body { brief: string }
+ * @returns JSON response with { success: true, data: { result: ParsedBrief } }
+ */
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { brief } = body;
+    // Parse request body
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return apiErrorResponse("Request body harus valid JSON", 400);
+    }
 
-    if (!brief || typeof brief !== "string" || brief.trim().length === 0) {
-      return NextResponse.json(
-        { error: "Brief text wajib diisi" },
-        { status: 400 }
+    const { brief } = body as Record<string, unknown>;
+
+    // Validate brief field
+    if (!brief || typeof brief !== "string") {
+      return apiErrorResponse("Field 'brief' wajib diisi (string)", 400);
+    }
+
+    const trimmedBrief = brief.trim();
+
+    if (trimmedBrief.length < MIN_BRIEF_LENGTH) {
+      return apiErrorResponse(
+        `Brief terlalu pendek (min ${MIN_BRIEF_LENGTH} karakter). Berikan deskripsi campaign yang lebih detail.`,
+        400
       );
     }
 
-    if (brief.length > 10000) {
-      return NextResponse.json(
-        { error: "Brief terlalu panjang (max 10.000 karakter)" },
-        { status: 400 }
+    if (trimmedBrief.length > MAX_BRIEF_LENGTH) {
+      return apiErrorResponse(
+        `Brief terlalu panjang (max ${MAX_BRIEF_LENGTH.toLocaleString()} karakter)`,
+        400
       );
     }
 
-    const result = await parseBrief(brief);
+    const result = await parseBrief(trimmedBrief);
 
-    return NextResponse.json({ result }, { status: 200 });
+    // Cache parsed briefs for 5 minutes (same brief = same result)
+    return apiSuccessResponse({ result }, 300);
   } catch (error) {
-    console.error("Brief parser error:", error);
-    return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Gagal menganalisis brief. Silakan coba lagi.",
-      },
-      { status: 500 }
+    return apiErrorResponse(
+      "Gagal menganalisis brief. Silakan coba lagi.",
+      500,
+      error
     );
   }
 }

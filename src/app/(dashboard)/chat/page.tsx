@@ -9,6 +9,12 @@ import {
   Bot,
   User,
   Lightbulb,
+  Search,
+  BarChart3,
+  Users,
+  Target,
+  AlertCircle,
+  RefreshCw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,6 +29,29 @@ const suggestedQuestions = [
   "Analisis creator mana yang cocok untuk brand F&B keluarga",
   "Berapa budget ideal untuk campaign TikTok dengan 5 creator?",
   "Creator mana yang paling reliable untuk deadline ketat?",
+];
+
+const aiCapabilities = [
+  {
+    icon: Search,
+    title: "Cari Creator",
+    desc: "Temukan creator berdasarkan niche, audience, personality",
+  },
+  {
+    icon: BarChart3,
+    title: "Analisis Campaign",
+    desc: "Evaluasi performa dan ROI campaign",
+  },
+  {
+    icon: Users,
+    title: "Rekomendasi Strategi",
+    desc: "Saran strategi influencer marketing",
+  },
+  {
+    icon: Target,
+    title: "Budget Planning",
+    desc: "Estimasi budget dan alokasi per creator",
+  },
 ];
 
 export default function ChatPage() {
@@ -75,7 +104,8 @@ export default function ChatPage() {
         const assistantMessage: ChatMessage = {
           id: `msg-${Date.now()}-error`,
           role: "assistant",
-          content: "Maaf, terjadi kesalahan. Silakan coba lagi.",
+          content:
+            "Hmm, ada masalah nih. Server lagi sibuk atau ada error di sisi kami. Coba lagi dalam beberapa detik ya! 🙏",
           timestamp: new Date().toISOString(),
         };
         setMessages((prev) => [...prev, assistantMessage]);
@@ -84,7 +114,8 @@ export default function ChatPage() {
       const assistantMessage: ChatMessage = {
         id: `msg-${Date.now()}-error`,
         role: "assistant",
-        content: "Gagal terhubung ke server. Pastikan koneksi internet stabil.",
+        content:
+          "Waduh, gagal terhubung ke server. Cek koneksi internet kamu ya, atau coba refresh halaman ini. Kalau masih error, mungkin server lagi maintenance sebentar.",
         timestamp: new Date().toISOString(),
       };
       setMessages((prev) => [...prev, assistantMessage]);
@@ -109,7 +140,7 @@ export default function ChatPage() {
             AI Campaign Assistant
           </h1>
           <p className="text-slate-500 text-sm mt-0.5">
-            Chat dengan AI yang memahami creator economy Indonesia
+            Chat dengan AI yang memahami creator economy Indonesia — tanya apapun soal campaign, creator, atau strategi.
           </p>
         </div>
         <Badge variant="default" className="gap-1">
@@ -125,7 +156,7 @@ export default function ChatPage() {
           <ScrollArea className="flex-1 p-4" ref={scrollRef}>
             <div className="space-y-4 pb-4">
               {messages.length === 0 && (
-                <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="flex flex-col items-center justify-center py-8 text-center">
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-violet-100 to-indigo-100 flex items-center justify-center mb-4 dark:from-violet-900 dark:to-indigo-900">
                     <Bot className="h-8 w-8 text-violet-600 dark:text-violet-400" />
                   </div>
@@ -136,6 +167,32 @@ export default function ChatPage() {
                     Gw bisa bantu lu cari creator, analisis campaign, kasih rekomendasi strategi,
                     atau jawab pertanyaan soal influencer marketing di Indonesia.
                   </p>
+
+                  {/* AI Capabilities */}
+                  <div className="mt-6 w-full max-w-lg">
+                    <p className="text-xs font-medium text-slate-500 mb-3 flex items-center gap-1 justify-center">
+                      <Sparkles className="h-3 w-3" />
+                      Kemampuan AI
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {aiCapabilities.map((cap) => (
+                        <div
+                          key={cap.title}
+                          className="flex items-start gap-2 rounded-lg border border-slate-100 p-3 text-left dark:border-slate-800"
+                        >
+                          <cap.icon className="h-4 w-4 text-violet-500 shrink-0 mt-0.5" />
+                          <div>
+                            <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                              {cap.title}
+                            </p>
+                            <p className="text-[11px] text-slate-400 mt-0.5">
+                              {cap.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
                   {/* Suggested questions */}
                   <div className="mt-6 space-y-2 w-full max-w-lg">
@@ -178,9 +235,23 @@ export default function ChatPage() {
                           : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
                       }`}
                     >
+                      {/* Error indicator for error messages */}
+                      {msg.role === "assistant" && msg.content.includes("gagal") && (
+                        <div className="flex items-center gap-1.5 mb-2 text-amber-600 dark:text-amber-400">
+                          <AlertCircle className="h-3.5 w-3.5" />
+                          <span className="text-xs font-medium">Ada masalah</span>
+                        </div>
+                      )}
                       <p className="whitespace-pre-wrap leading-relaxed">
                         {msg.content}
                       </p>
+                      {/* Retry hint for error messages */}
+                      {msg.role === "assistant" && (msg.content.includes("gagal") || msg.content.includes("error") || msg.content.includes("masalah")) && (
+                        <div className="flex items-center gap-1 mt-2 text-xs text-slate-400">
+                          <RefreshCw className="h-3 w-3" />
+                          <span>Kirim ulang pesan untuk coba lagi</span>
+                        </div>
+                      )}
                     </div>
                     {msg.role === "user" && (
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700">
@@ -217,7 +288,7 @@ export default function ChatPage() {
           <div className="border-t border-slate-200 p-4 dark:border-slate-800">
             <div className="flex gap-3">
               <Textarea
-                placeholder="Tanya apapun tentang creator, campaign, atau strategi..."
+                placeholder="Tanya apapun tentang creator, campaign, atau strategi... (Enter untuk kirim, Shift+Enter untuk baris baru)"
                 className="min-h-[44px] max-h-[120px] resize-none"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -233,7 +304,7 @@ export default function ChatPage() {
               </Button>
             </div>
             <p className="text-[11px] text-slate-400 mt-2 text-center">
-              Powered by Google Gemini 2.5 Flash • KOLab AI memahami konteks Indonesia
+              Powered by Google Gemini 2.5 Flash • KOLab AI memahami konteks Indonesia • Data tidak disimpan
             </p>
           </div>
         </CardContent>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   Search,
@@ -12,6 +12,12 @@ import {
   MapPin,
   Star,
   Filter,
+  Info,
+  ChevronDown,
+  ChevronUp,
+  Lightbulb,
+  Brain,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -135,6 +141,7 @@ export default function CreatorsPage() {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<MatchResult[] | null>(null);
+  const [showTips, setShowTips] = useState(false);
 
   const handleSearch = async () => {
     if (!query.trim()) return;
@@ -172,9 +179,26 @@ export default function CreatorsPage() {
           Creator Discovery
         </h1>
         <p className="text-slate-500 mt-1">
-          Cari creator dengan natural language — AI memahami konteks dan personality
+          Cari creator dengan natural language — AI memahami konteks, personality, dan audience fit secara semantik.
         </p>
       </div>
+
+      {/* AI Search Explanation */}
+      <motion.div
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-start gap-3 rounded-xl border border-indigo-100 bg-indigo-50/50 p-4 dark:border-indigo-900 dark:bg-indigo-950/30"
+      >
+        <Brain className="h-5 w-5 text-indigo-600 shrink-0 mt-0.5" />
+        <div className="flex-1">
+          <p className="text-sm font-medium text-indigo-800 dark:text-indigo-300">
+            Semantic Search — Bukan Keyword Biasa
+          </p>
+          <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1">
+            AI memahami <em>makna</em> pencarian kamu, bukan cuma mencocokkan kata. Tulis deskripsi creator yang kamu butuhkan dalam bahasa sehari-hari — AI akan mengerti konteks, personality, dan audience yang kamu cari.
+          </p>
+        </div>
+      </motion.div>
 
       {/* Search Bar */}
       <Card>
@@ -205,27 +229,83 @@ export default function CreatorsPage() {
           </div>
 
           {/* Quick search suggestions */}
-          <div className="flex flex-wrap gap-2 mt-3">
-            {[
-              "creator beauty premium Jakarta",
-              "tech reviewer yang jujur dan chaotic",
-              "ibu-ibu racun TikTok food content",
-              "anak skena fashion indie Jogja",
-              "gaming creator cewek bumi",
-            ].map((suggestion) => (
-              <button
-                key={suggestion}
-                onClick={() => {
-                  setQuery(suggestion);
-                }}
-                className="text-xs rounded-full border border-slate-200 px-3 py-1 text-slate-600 hover:border-violet-300 hover:text-violet-600 hover:bg-violet-50 transition-colors dark:border-slate-700 dark:text-slate-400 dark:hover:border-violet-700"
-              >
-                {suggestion}
-              </button>
-            ))}
+          <div className="mt-3">
+            <p className="text-[11px] text-slate-400 mb-2 flex items-center gap-1">
+              <Zap className="h-3 w-3" />
+              Coba pencarian cepat:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "creator beauty premium Jakarta",
+                "tech reviewer yang jujur dan chaotic",
+                "ibu-ibu racun TikTok food content",
+                "anak skena fashion indie Jogja",
+                "gaming creator cewek bumi",
+              ].map((suggestion) => (
+                <button
+                  key={suggestion}
+                  onClick={() => {
+                    setQuery(suggestion);
+                  }}
+                  className="text-xs rounded-full border border-slate-200 px-3 py-1 text-slate-600 hover:border-violet-300 hover:text-violet-600 hover:bg-violet-50 transition-colors dark:border-slate-700 dark:text-slate-400 dark:hover:border-violet-700"
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
+
+      {/* Tips Pencarian — Collapsible */}
+      <div>
+        <button
+          onClick={() => setShowTips(!showTips)}
+          className="flex items-center gap-2 text-xs text-slate-500 hover:text-violet-600 transition-colors"
+        >
+          <Lightbulb className="h-3.5 w-3.5" />
+          <span>Tips Pencarian AI</span>
+          {showTips ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+        </button>
+
+        <AnimatePresence>
+          {showTips && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden"
+            >
+              <Card className="mt-2 border-slate-100 dark:border-slate-800">
+                <CardContent className="p-4">
+                  <div className="grid md:grid-cols-2 gap-4 text-xs">
+                    <div>
+                      <p className="font-medium text-slate-700 dark:text-slate-300 mb-2">✅ Pencarian yang Bagus:</p>
+                      <ul className="space-y-1.5 text-slate-500">
+                        <li>&quot;Creator beauty yang tone-nya calm dan educational&quot;</li>
+                        <li>&quot;Micro-influencer food Jakarta yang audience-nya keluarga&quot;</li>
+                        <li>&quot;Creator tech yang sering review gadget budget&quot;</li>
+                        <li>&quot;KOL lifestyle premium yang cocok untuk brand luxury&quot;</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-medium text-slate-700 dark:text-slate-300 mb-2">💡 Yang Bisa Kamu Deskripsikan:</p>
+                      <ul className="space-y-1.5 text-slate-500">
+                        <li>• <strong>Personality:</strong> chaotic, calm, educational, funny</li>
+                        <li>• <strong>Audience:</strong> ibu-ibu, gen-z, profesional muda</li>
+                        <li>• <strong>Niche:</strong> beauty, tech, food, fashion, gaming</li>
+                        <li>• <strong>Lokasi:</strong> Jakarta, Bandung, Surabaya, dll</li>
+                        <li>• <strong>Platform:</strong> TikTok, Instagram, YouTube</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Results */}
       <div className="space-y-3">
@@ -235,6 +315,9 @@ export default function CreatorsPage() {
               <Loader2 className="h-8 w-8 animate-spin text-violet-600 mx-auto" />
               <p className="mt-3 text-sm text-slate-500">
                 AI sedang mencari creator yang cocok...
+              </p>
+              <p className="mt-1 text-xs text-slate-400">
+                Menganalisis personality, audience, dan fit score
               </p>
             </div>
           </div>
@@ -254,6 +337,13 @@ export default function CreatorsPage() {
                 AI Ranked
               </Badge>
             </div>
+
+            {/* Explanation of results */}
+            <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-50 rounded-lg px-3 py-2 dark:bg-slate-900">
+              <Info className="h-3.5 w-3.5 shrink-0" />
+              <span>Hasil diurutkan berdasarkan fit score — semakin tinggi, semakin cocok dengan kebutuhan kamu. Klik creator untuk lihat detail.</span>
+            </div>
+
             {searchResults.map((result, index) => (
               <motion.div
                 key={result.creator.id}
@@ -276,6 +366,9 @@ export default function CreatorsPage() {
             <div className="flex items-center justify-between">
               <p className="text-sm text-slate-500">
                 Semua creator ({creators.length})
+              </p>
+              <p className="text-xs text-slate-400">
+                Gunakan AI Search untuk hasil yang lebih relevan
               </p>
             </div>
             {creators.map((creator, index) => (

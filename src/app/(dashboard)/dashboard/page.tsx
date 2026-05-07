@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   TrendingUp,
   Users,
@@ -14,9 +15,16 @@ import {
   Sparkles,
   BarChart3,
   Activity,
+  Upload,
+  Search,
+  MessageSquare,
+  Rocket,
+  ArrowRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { dashboardStats, sampleCampaigns } from "@/lib/data/campaigns";
 import { creators } from "@/lib/data/creators";
 
@@ -96,14 +104,14 @@ function getStatusBadge(status: string) {
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Welcome Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-800 dark:text-white/90">
-            Dashboard
+            Selamat Datang di KOLab AI 👋
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Overview campaign intelligence dan creator matching
+            Platform AI-powered untuk influencer marketing Indonesia — dari brief sampai campaign selesai.
           </p>
         </div>
         <Badge variant="default" className="gap-1.5 py-1 px-3">
@@ -112,6 +120,102 @@ export default function DashboardPage() {
         </Badge>
       </div>
 
+      {/* Quick Actions */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="grid grid-cols-1 sm:grid-cols-3 gap-3"
+      >
+        <Link href="/brief" className="block">
+          <Card className="hover:shadow-md hover:border-violet-200 transition-all cursor-pointer group dark:hover:border-violet-800">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-500/20 group-hover:scale-110 transition-transform">
+                <Upload className="h-5 w-5 text-violet-600 dark:text-violet-400" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-800 dark:text-white/90">Upload Brief</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Parse campaign brief dengan AI</p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-violet-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/creators" className="block">
+          <Card className="hover:shadow-md hover:border-violet-200 transition-all cursor-pointer group dark:hover:border-violet-800">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-500/20 group-hover:scale-110 transition-transform">
+                <Search className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-800 dark:text-white/90">Cari Creator</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Semantic search dengan AI</p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/chat" className="block">
+          <Card className="hover:shadow-md hover:border-violet-200 transition-all cursor-pointer group dark:hover:border-violet-800">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-500/20 group-hover:scale-110 transition-transform">
+                <MessageSquare className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-800 dark:text-white/90">Chat AI</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Tanya strategi & rekomendasi</p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+      </motion.div>
+
+      {/* Getting Started Guide — only show if few campaigns */}
+      {dashboardStats.totalCampaigns <= 5 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="rounded-2xl border border-violet-100 bg-gradient-to-r from-violet-50 to-indigo-50 p-5 dark:border-violet-900 dark:from-violet-950/30 dark:to-indigo-950/30"
+        >
+          <div className="flex items-start gap-3">
+            <Rocket className="h-5 w-5 text-violet-600 shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold text-violet-800 dark:text-violet-300">
+                Getting Started — Mulai Campaign Pertama
+              </h3>
+              <p className="text-xs text-violet-600 dark:text-violet-400 mt-1">
+                Ikuti langkah-langkah ini untuk memulai campaign influencer marketing kamu:
+              </p>
+              <div className="grid sm:grid-cols-3 gap-3 mt-3">
+                <div className="flex items-start gap-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700 dark:bg-violet-800 dark:text-violet-300">1</span>
+                  <div>
+                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">Upload Brief</p>
+                    <p className="text-[11px] text-violet-500 dark:text-violet-400">Paste brief campaign, AI akan parsing otomatis</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700 dark:bg-violet-800 dark:text-violet-300">2</span>
+                  <div>
+                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">Cari Creator</p>
+                    <p className="text-[11px] text-violet-500 dark:text-violet-400">AI match creator berdasarkan brief kamu</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700 dark:bg-violet-800 dark:text-violet-300">3</span>
+                  <div>
+                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">Kelola Campaign</p>
+                    <p className="text-[11px] text-violet-500 dark:text-violet-400">Track progress dari matching sampai selesai</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Metrics Grid */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -119,6 +223,10 @@ export default function DashboardPage() {
         transition={{ duration: 0.4 }}
         className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
       >
+        <div className="px-5 py-3 border-b border-gray-200 dark:border-gray-800">
+          <h2 className="text-sm font-medium text-gray-700 dark:text-gray-300">Overview Metrics</h2>
+          <p className="text-xs text-gray-400">Ringkasan performa campaign dan creator matching</p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
           {statCards.map((stat, index) => (
             <div
@@ -191,13 +299,13 @@ export default function DashboardPage() {
                     Campaign Terbaru
                   </h3>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {sampleCampaigns.length} campaign aktif
+                    {sampleCampaigns.length} campaign — klik untuk detail
                   </p>
                 </div>
               </div>
-              <button className="text-sm font-medium text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300">
+              <Link href="/campaign" className="text-sm font-medium text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300">
                 Lihat Semua
-              </button>
+              </Link>
             </div>
             <div className="p-5 md:p-6">
               <div className="space-y-3">
@@ -234,9 +342,14 @@ export default function DashboardPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
                   <BarChart3 className="h-5 w-5 text-gray-800 dark:text-white/90" />
                 </div>
-                <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">
-                  Campaign Performance
-                </h3>
+                <div>
+                  <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">
+                    Campaign Performance
+                  </h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Visualisasi reach dan engagement campaign
+                  </p>
+                </div>
               </div>
               <div className="flex items-center gap-4 text-xs">
                 <span className="flex items-center gap-1.5">
@@ -253,6 +366,7 @@ export default function DashboardPage() {
               <div className="flex flex-col items-center gap-2 text-gray-400">
                 <Activity className="h-8 w-8" />
                 <p className="text-sm">Chart akan ditampilkan di sini</p>
+                <p className="text-xs text-gray-300">Data terakumulasi setelah campaign berjalan</p>
               </div>
             </div>
           </motion.div>
@@ -272,15 +386,20 @@ export default function DashboardPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-500/20">
                   <Users className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                 </div>
-                <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">
-                  Top Creator
-                </h3>
+                <div>
+                  <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">
+                    Top Creator
+                  </h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Berdasarkan trust level
+                  </p>
+                </div>
               </div>
             </div>
             <div className="p-5 md:p-6">
               <div className="space-y-4">
                 {creators.slice(0, 5).map((creator, idx) => (
-                  <div key={creator.id} className="flex items-center gap-3">
+                  <Link key={creator.id} href={`/creators/${creator.id}`} className="flex items-center gap-3 hover:bg-gray-50 rounded-lg p-1 -m-1 transition-colors dark:hover:bg-white/[0.02]">
                     <span className="text-xs font-medium text-gray-400 w-4">
                       {idx + 1}
                     </span>
@@ -301,7 +420,7 @@ export default function DashboardPage() {
                         {creator.audienceDemo.trustLevel}%
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -319,9 +438,14 @@ export default function DashboardPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
                   <DollarSign className="h-5 w-5 text-gray-800 dark:text-white/90" />
                 </div>
-                <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">
-                  Budget Overview
-                </h3>
+                <div>
+                  <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">
+                    Budget Overview
+                  </h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Alokasi dan utilisasi budget
+                  </p>
+                </div>
               </div>
             </div>
             <div className="p-5 md:p-6">
@@ -336,6 +460,7 @@ export default function DashboardPage() {
                     </span>
                   </div>
                   <Progress value={65} />
+                  <p className="text-[11px] text-gray-400 mt-1">65% sudah dialokasikan ke campaign</p>
                 </div>
                 <div>
                   <div className="flex justify-between text-sm mb-2">
@@ -347,6 +472,7 @@ export default function DashboardPage() {
                     </span>
                   </div>
                   <Progress value={dashboardStats.completionRate} />
+                  <p className="text-[11px] text-gray-400 mt-1">Campaign yang selesai tepat waktu</p>
                 </div>
                 <div className="flex items-center gap-2 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 p-3">
                   <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />

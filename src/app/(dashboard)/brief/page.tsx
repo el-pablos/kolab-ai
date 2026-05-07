@@ -13,6 +13,13 @@ import {
   Calendar,
   DollarSign,
   Tag,
+  Info,
+  ChevronDown,
+  ChevronUp,
+  Lightbulb,
+  Wand2,
+  ArrowRight,
+  HelpCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,6 +32,7 @@ export default function BriefPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [parsedBrief, setParsedBrief] = useState<ParsedBrief | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
 
   const handleParseBrief = async () => {
     if (!briefText.trim()) return;
@@ -85,9 +93,79 @@ Requirements:
           Upload Campaign Brief
         </h1>
         <p className="text-slate-500 mt-1">
-          Paste brief campaign — AI akan menganalisis dan mengekstrak informasi secara otomatis
+          Paste brief campaign kamu di sini — AI akan membaca, memahami konteks, dan mengekstrak semua informasi penting secara otomatis.
         </p>
       </div>
+
+      {/* Apa itu Brief? — Collapsible */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+      >
+        <Card className="border-violet-100 bg-violet-50/50 dark:border-violet-900 dark:bg-violet-950/30">
+          <CardContent className="p-4">
+            <button
+              onClick={() => setShowHelp(!showHelp)}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <HelpCircle className="h-4 w-4 text-violet-600" />
+                <span className="text-sm font-medium text-violet-800 dark:text-violet-300">
+                  Apa itu Brief? Gimana cara kerjanya?
+                </span>
+              </div>
+              {showHelp ? (
+                <ChevronUp className="h-4 w-4 text-violet-600" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-violet-600" />
+              )}
+            </button>
+
+            <AnimatePresence>
+              {showHelp && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-3 pt-3 border-t border-violet-200 dark:border-violet-800 space-y-3 text-sm text-violet-700 dark:text-violet-300">
+                    <p>
+                      <strong>Brief</strong> adalah dokumen yang berisi detail campaign kamu — mulai dari brand, objective, target audience, budget, sampai deliverables yang diharapkan dari creator.
+                    </p>
+                    <div className="space-y-2">
+                      <p className="font-medium">Cara kerja AI Parsing:</p>
+                      <div className="grid gap-2">
+                        <div className="flex items-start gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700">1</span>
+                          <span>Paste brief dalam format apapun (bebas, ga harus terstruktur)</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700">2</span>
+                          <span>AI (Gemini) membaca dan memahami konteks brief kamu</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700">3</span>
+                          <span>Otomatis mengekstrak: objective, audience, budget, timeline, deliverables</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-200 text-xs font-bold text-violet-700">4</span>
+                          <span>AI juga generate profil creator ideal berdasarkan brief</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-violet-500 italic">
+                      💡 Tips: Semakin detail brief kamu, semakin akurat hasil parsing AI-nya.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </CardContent>
+        </Card>
+      </motion.div>
 
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Input Section */}
@@ -97,11 +175,27 @@ Requirements:
               <CardTitle className="flex items-center gap-2 text-base">
                 <FileText className="h-5 w-5 text-violet-600" />
                 Campaign Brief
+                <div className="relative group ml-1">
+                  <Info className="h-3.5 w-3.5 text-slate-400 cursor-help" />
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
+                    AI akan menganalisis teks apapun — ga perlu format khusus
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900" />
+                  </div>
+                </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <Textarea
-                placeholder="Paste campaign brief di sini... Bisa dalam format apapun — AI akan memahaminya."
+                placeholder="Paste campaign brief di sini... Bisa dalam format apapun — AI akan memahaminya.
+
+Contoh isi brief:
+• Nama brand & produk
+• Objective campaign
+• Target audience
+• Budget
+• Timeline
+• Deliverables yang diharapkan
+• Requirements khusus"
                 className="min-h-[400px] text-sm"
                 value={briefText}
                 onChange={(e) => setBriefText(e.target.value)}
@@ -132,6 +226,9 @@ Requirements:
                   Contoh Brief
                 </Button>
               </div>
+              <p className="text-[11px] text-slate-400 mt-2 text-center">
+                Powered by Gemini AI — brief kamu tidak disimpan di server
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -144,9 +241,17 @@ Requirements:
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+                className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950"
               >
-                {error}
+                <div className="flex items-start gap-3">
+                  <Info className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-red-700 dark:text-red-300">{error}</p>
+                    <p className="text-xs text-red-500 mt-1">
+                      Pastikan brief kamu berisi informasi campaign yang jelas. Coba lagi atau gunakan contoh brief untuk melihat cara kerjanya.
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             )}
 
@@ -164,6 +269,9 @@ Requirements:
                 <p className="mt-4 text-sm text-slate-500">
                   Gemini AI sedang menganalisis brief...
                 </p>
+                <p className="mt-1 text-xs text-slate-400">
+                  Mengekstrak objective, audience, budget, dan deliverables
+                </p>
               </motion.div>
             )}
 
@@ -174,11 +282,16 @@ Requirements:
                 className="space-y-4"
               >
                 {/* Success indicator */}
-                <div className="flex items-center gap-2 text-emerald-600 mb-4">
-                  <CheckCircle2 className="h-5 w-5" />
-                  <span className="text-sm font-medium">
-                    Brief berhasil dianalisis oleh AI
-                  </span>
+                <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 dark:border-emerald-800 dark:bg-emerald-950">
+                  <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-300">
+                    <CheckCircle2 className="h-5 w-5" />
+                    <span className="text-sm font-medium">
+                      Brief berhasil dianalisis oleh AI
+                    </span>
+                  </div>
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1 ml-7">
+                    AI telah mengekstrak {parsedBrief.deliverables.length} deliverables, {parsedBrief.keywords.length} keywords, dan profil creator ideal dari brief kamu.
+                  </p>
                 </div>
 
                 {/* Parsed Results */}
@@ -257,8 +370,9 @@ Requirements:
 
                     {/* Ideal Creator */}
                     <div className="rounded-lg border border-violet-100 bg-violet-50 p-4 dark:border-violet-800 dark:bg-violet-950">
-                      <p className="text-xs font-medium text-violet-700 mb-1 dark:text-violet-300">
-                        🎯 Profil Creator Ideal (AI Generated)
+                      <p className="text-xs font-medium text-violet-700 mb-1 dark:text-violet-300 flex items-center gap-1">
+                        <Wand2 className="h-3.5 w-3.5" />
+                        Profil Creator Ideal (AI Generated)
                       </p>
                       <p className="text-sm text-violet-800 dark:text-violet-200">
                         {parsedBrief.idealCreatorProfile}
@@ -283,11 +397,23 @@ Requirements:
                       </div>
                     </div>
 
+                    {/* Next Step */}
+                    <div className="rounded-lg bg-slate-50 p-3 dark:bg-slate-900">
+                      <p className="text-xs text-slate-500 mb-2 flex items-center gap-1">
+                        <Lightbulb className="h-3.5 w-3.5" />
+                        Langkah Selanjutnya
+                      </p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400">
+                        Brief sudah diparsing! Sekarang kamu bisa langsung cari creator yang cocok berdasarkan profil ideal yang sudah di-generate AI.
+                      </p>
+                    </div>
+
                     {/* Action */}
                     <Button className="w-full mt-4" asChild>
                       <a href="/creators">
                         <Sparkles className="h-4 w-4" />
                         Cari Creator yang Cocok
+                        <ArrowRight className="h-4 w-4" />
                       </a>
                     </Button>
                   </CardContent>
@@ -299,18 +425,40 @@ Requirements:
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center py-20 text-center"
+                className="flex flex-col items-center justify-center py-12 text-center"
               >
                 <div className="h-16 w-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-4 dark:bg-slate-800">
                   <FileText className="h-8 w-8 text-slate-400" />
                 </div>
                 <h3 className="text-lg font-medium text-slate-700 dark:text-slate-300">
-                  Belum ada brief
+                  Hasil parsing akan muncul di sini
                 </h3>
                 <p className="text-sm text-slate-500 mt-1 max-w-sm">
                   Paste campaign brief di sebelah kiri, lalu klik &quot;Parse dengan AI&quot;
                   untuk menganalisis secara otomatis.
                 </p>
+
+                {/* Step by step guide */}
+                <div className="mt-6 w-full max-w-sm text-left space-y-3">
+                  <p className="text-xs font-medium text-slate-500 text-center">Cara Pakai:</p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3 rounded-lg border border-slate-100 p-3 dark:border-slate-800">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xs font-bold text-violet-700 dark:bg-violet-900 dark:text-violet-300">1</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-400">Paste brief campaign (format bebas)</span>
+                    </div>
+                    <div className="flex items-center gap-3 rounded-lg border border-slate-100 p-3 dark:border-slate-800">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xs font-bold text-violet-700 dark:bg-violet-900 dark:text-violet-300">2</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-400">Klik &quot;Parse dengan AI&quot; untuk analisis</span>
+                    </div>
+                    <div className="flex items-center gap-3 rounded-lg border border-slate-100 p-3 dark:border-slate-800">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xs font-bold text-violet-700 dark:bg-violet-900 dark:text-violet-300">3</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-400">Review hasil parsing & cari creator yang cocok</span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-slate-400 text-center mt-2">
+                    Atau klik &quot;Contoh Brief&quot; untuk lihat demo
+                  </p>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
