@@ -1,92 +1,115 @@
 <div align="center">
 
-# 🤖 KOLab AI
+# KOLab AI
 
 ### AI Campaign Intelligence Engine untuk Creator Economy Indonesia
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/el-pablos/kolab-ai/ci.yml?branch=main&style=flat-square)](https://github.com/el-pablos/kolab-ai/actions)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://typescriptlang.org)
-[![Gemini AI](https://img.shields.io/badge/Gemini-2.0_Flash-4285F4?style=flat-square&logo=google)](https://ai.google.dev)
+[![Gemini AI](https://img.shields.io/badge/Gemini-2.5_Flash-4285F4?style=flat-square&logo=google)](https://ai.google.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
+[![Cloud Run](https://img.shields.io/badge/Cloud_Run-Deployed-4285F4?style=flat-square&logo=google-cloud)](https://cloud.google.com/run)
+[![Tests](https://img.shields.io/badge/Tests-40%2F40_Passed-brightgreen?style=flat-square)](.)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![JuaraVibeCoding](https://img.shields.io/badge/%23JuaraVibeCoding-2026-FF6B35?style=flat-square)](https://goo.gle/jvc_credit)
 
 **Bukan sekadar database KOL. KOLab AI adalah campaign intelligence engine yang memahami personality creator, audience trust, dan konteks lokal Indonesia secara semantik.**
 
-[🚀 Live Demo](https://projek-juara-vibecoded.vercel.app) · [📖 Dokumentasi](#arsitektur) · [🐛 Report Bug](https://github.com/el-pablos/kolab-ai/issues)
+[Live Demo](https://kolab-ai-839794389428.asia-southeast2.run.app) | [Dokumentasi](#arsitektur-sistem) | [Report Bug](https://github.com/el-pablos/kolab-ai/issues)
 
 </div>
 
 ---
 
-## 📋 Daftar Isi
+## Daftar Isi
 
 - [Tentang Projek](#tentang-projek)
-- [Kenapa KOLab AI Beda?](#kenapa-kolab-ai-beda)
+- [Masalah yang Diselesaikan](#masalah-yang-diselesaikan)
 - [Fitur Utama](#fitur-utama)
 - [Screenshots](#screenshots)
-- [Arsitektur](#arsitektur)
+- [Arsitektur Sistem](#arsitektur-sistem)
+- [Flow Diagram](#flow-diagram)
 - [Tech Stack](#tech-stack)
 - [Struktur Projek](#struktur-projek)
-- [Cara Install & Jalankan](#cara-install--jalankan)
+- [Cara Install dan Jalankan](#cara-install-dan-jalankan)
 - [API Endpoints](#api-endpoints)
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Roadmap](#roadmap)
 - [Kontributor](#kontributor)
+- [Lisensi](#lisensi)
 
 ---
 
 ## Tentang Projek
 
-**KOLab AI** adalah platform AI-native yang dibangun untuk merevolusi cara brand dan agency di Indonesia menemukan dan mengelola creator/KOL untuk campaign mereka. 
+KOLab AI adalah platform AI-native yang dibangun khusus untuk merevolusi cara brand dan agency di Indonesia menemukan serta mengelola creator atau KOL (Key Opinion Leader) untuk campaign mereka. Platform ini dibangun sebagai submission untuk kompetisi **#JuaraVibeCoding 2026** yang diselenggarakan oleh Google Indonesia.
 
-Di Indonesia, platform influencer marketing yang ada sekarang masih bersifat "database + filter" — cari creator berdasarkan followers, engagement rate, lokasi, selesai. Itu pendekatan yang sudah ketinggalan zaman.
+Di Indonesia, platform influencer marketing yang ada sekarang masih bersifat "database + filter" — cari creator berdasarkan followers, engagement rate, lokasi, selesai. Pendekatan itu sudah ketinggalan zaman dan ga cukup untuk kebutuhan brand modern yang butuh pemahaman mendalam tentang creator.
 
-KOLab AI mengambil pendekatan yang fundamentally berbeda: **semantic intelligence**. AI kami (powered by Google Gemini 2.0) benar-benar memahami:
+KOLab AI mengambil pendekatan yang fundamentally berbeda: **semantic intelligence**. AI kami yang dipowered oleh Google Gemini 2.5 Flash benar-benar memahami personality creator, audience trust, konteks lokal Indonesia, dan campaign fit secara semantik — bukan sekadar angka-angka di dashboard.
 
-- **Personality creator** — bukan cuma angka, tapi vibe, tone, humor style, energy
-- **Audience trust** — bukan cuma engagement rate, tapi seberapa audience percaya rekomendasi creator
-- **Konteks lokal Indonesia** — memahami "cewek bumi", "anak skena", "ibu-ibu racun TikTok", "konten tongkrongan"
-- **Campaign fit** — semantic matching antara brief campaign dengan personality creator
+### Kenapa Ini Penting?
 
-Ini bukan "another KOL platform". Ini adalah **Palantir untuk creator economy Indonesia**.
+Creator economy Indonesia tumbuh pesat. Menurut data terbaru, ada jutaan creator aktif di TikTok, Instagram, dan YouTube Indonesia. Tapi brand masih kesulitan menemukan creator yang benar-benar cocok untuk campaign mereka. Masalahnya bukan kurangnya data — tapi kurangnya intelligence di atas data tersebut.
+
+KOLab AI hadir sebagai "Palantir untuk creator economy" — bukan marketplace, bukan database, tapi intelligence layer yang membantu brand membuat keputusan yang lebih cerdas.
 
 ---
 
-## Kenapa KOLab AI Beda?
+## Masalah yang Diselesaikan
+
+### Platform KOL yang Ada Sekarang
+
+Platform seperti Allstars, Kollabo, Slice, dan lainnya sudah menyediakan database creator dengan filter standar. Tapi mereka punya keterbatasan fundamental:
 
 | Aspek | Platform Biasa | KOLab AI |
 |-------|---------------|----------|
 | Pencarian | Filter: followers, ER, lokasi | Natural language: "cari creator beauty soft-spoken yang audience-nya ibu-ibu 25-35" |
-| Matching | Manual shortlist | AI semantic matching berdasarkan personality fit |
-| Understanding | Database statis | AI memahami vibe, tone, humor, authenticity |
-| Brief Processing | Manual input form | Upload brief → AI auto-parse semua informasi |
-| Konteks Lokal | Generic global | Memahami slang, niche, dan budaya creator Indo |
-| Intelligence | Dashboard reporting | Campaign memory engine yang belajar dari setiap campaign |
+| Matching | Manual shortlist berdasarkan angka | AI semantic matching berdasarkan personality fit |
+| Understanding | Database statis dengan metrik surface-level | AI memahami vibe, tone, humor, authenticity creator |
+| Brief Processing | Manual input form field by field | Upload brief format apapun, AI auto-parse semua informasi |
+| Konteks Lokal | Generic, ga ngerti budaya lokal | Memahami slang, niche, dan budaya creator Indonesia |
+| Data Acquisition | Creator harus daftar ke platform | Paste URL sosmed, AI langsung analisis |
+
+### Pertanyaan Kritis: "Data Creator Dari Mana?"
+
+Ini pertanyaan yang paling sering ditanya. Platform KOL existing punya database karena mereka sudah bertahun-tahun collect data dan creator mendaftar ke platform mereka. KOLab AI sebagai platform baru ga mungkin minta creator daftar satu-satu.
+
+**Solusi kami: AI-powered creator analysis.** User cukup paste URL profil TikTok, Instagram, atau YouTube. Gemini AI menganalisis creator berdasarkan knowledge base-nya dan menghasilkan profil intelligence lengkap — personality analysis, audience demographics estimation, engagement quality assessment, dan pricing estimation. Tanpa scraping, tanpa registrasi, tanpa API pihak ketiga.
+
+Untuk creator terkenal (Raditya Dika, Anya Maharani, dll), data yang dihasilkan cukup akurat karena Gemini punya knowledge tentang mereka. Untuk creator yang kurang dikenal, AI memberikan estimasi realistis berdasarkan platform dan niche. Semua hasil ditandai dengan badge "AI Estimation" dan disclaimer yang jujur tentang akurasi data.
 
 ---
 
 ## Fitur Utama
 
-### 🧠 Brief Parser AI
-Upload campaign brief dalam format apapun — AI menganalisis dan mengekstrak objective, tone, target audience, budget, deliverables, dan profil creator ideal secara otomatis dalam hitungan detik.
+### 1. Brief Parser AI
 
-### 🔍 Semantic Creator Search
-Cari creator menggunakan natural language. Bukan sekadar filter, tapi AI yang memahami intent pencarian dan mencocokkan dengan personality creator secara semantik.
+Upload campaign brief dalam format apapun — bisa copy-paste dari email, dokumen, atau ketik langsung. AI menganalisis dan mengekstrak semua informasi penting secara otomatis: objective campaign, target audience, tone yang diinginkan, budget, timeline, deliverables, dan requirements. Bahkan AI akan menghasilkan profil creator ideal berdasarkan brief tersebut.
 
-### 🎯 Creator-Campaign Fit Scoring
-Setiap creator mendapat fit score berdasarkan 6 dimensi: audience fit, tone fit, niche fit, budget fit, reliability score, dan engagement quality. Lengkap dengan reasoning AI kenapa creator tersebut cocok atau tidak.
+### 2. Semantic Creator Search
 
-### 👤 AI Personality Profiling
-Setiap creator punya AI-generated personality profile yang mencakup tone, humor style, energy level, authenticity score, dan audience trust analysis.
+Cari creator menggunakan natural language, bukan filter kaku. Ketik "creator beauty soft-spoken yang audience-nya ibu-ibu 25-35 di Jakarta" dan AI akan memahami intent pencarian dan mencocokkan dengan personality creator secara semantik. Setiap hasil dilengkapi dengan fit score dan reasoning AI kenapa creator tersebut cocok.
 
-### 💬 AI Campaign Assistant
-Chat interface yang memahami konteks campaign dan creator database. Tanya rekomendasi, analisis, atau strategi kapan aja — AI menjawab dengan data dan insight yang actionable.
+### 3. Tambah Creator via URL
 
-### 📊 Campaign Workspace
-Kelola semua campaign dari brief hingga completion. Track progress, monitor deliverables, dan lihat performance metrics dalam satu dashboard.
+Fitur killer yang menjawab pertanyaan "data dari mana". Paste URL profil TikTok, Instagram, atau YouTube — AI langsung menganalisis dan menghasilkan profil intelligence lengkap. Termasuk personality analysis, audience demographics, engagement metrics, dan pricing estimation. Creator yang sudah dianalisis otomatis masuk ke database dan bisa di-match dengan campaign.
+
+### 4. AI Personality Profiling
+
+Setiap creator punya AI-generated personality profile yang mencakup tone (soft spoken, chaotic energy, educational), humor style (meme-heavy, dry wit, wholesome), energy level, authenticity score, dan audience trust analysis. Ini yang membedakan KOLab AI dari platform lain — kami ga cuma lihat angka, tapi memahami "vibe" creator.
+
+### 5. AI Campaign Assistant
+
+Chat interface yang memahami konteks campaign dan creator database. Tanya rekomendasi creator, analisis campaign strategy, estimasi budget, atau apapun soal influencer marketing — AI menjawab dengan data dan insight yang actionable. Powered by Gemini 2.5 Flash dengan konteks Indonesia.
+
+### 6. Campaign Workspace
+
+Kelola semua campaign dari brief hingga completion. Track progress setiap campaign, monitor status (draft, briefing, matching, outreach, active, review, completed), dan lihat performance metrics dalam satu dashboard yang clean.
+
+### 7. Dashboard Analytics
+
+Overview lengkap: total campaign, campaign aktif, creator matched, average fit score, budget tracking, dan completion rate. Quick action buttons untuk langsung upload brief, cari creator, atau chat dengan AI.
 
 ---
 
@@ -94,76 +117,104 @@ Kelola semua campaign dari brief hingga completion. Track progress, monitor deli
 
 ### Landing Page
 ![Landing Page](public/images/screenshots/01-landing.png)
-*Hero section dengan value proposition yang jelas dan statistik platform*
+*Hero section dengan value proposition, statistik platform, dan penjelasan cara kerja*
 
 ### Dashboard
 ![Dashboard](public/images/screenshots/02-dashboard.png)
-*Overview campaign intelligence: stats, active campaigns, top creators, dan budget tracking*
+*Overview campaign intelligence: stats cards, campaign terbaru, top creators, budget tracking*
+
+### Upload Brief
+![Upload Brief](public/images/screenshots/03-brief.png)
+*Paste campaign brief, AI auto-parse semua informasi termasuk profil creator ideal*
 
 ### Creator Discovery
-![Creator Discovery](public/images/screenshots/03-creators.png)
-*Semantic search dengan natural language dan suggested queries untuk konteks Indonesia*
+![Creator Discovery](public/images/screenshots/04-creators.png)
+*Semantic search dengan natural language, suggested queries, dan AI-ranked results*
 
-### AI Chat Assistant
-![AI Chat](public/images/screenshots/04-chat.png)
-*Chat interface powered by Gemini 2.0 Flash dengan suggested questions*
-
-### Campaign Workspace
-![Campaign](public/images/screenshots/05-campaign.png)
-*Kelola campaign dari brief hingga completion dengan progress tracking*
+### Tambah Creator via URL
+![Tambah Creator](public/images/screenshots/05-add-creator.png)
+*Paste URL sosmed, AI analisis profil, platform detection, dan step-by-step loading*
 
 ### Creator Profile
 ![Creator Profile](public/images/screenshots/06-creator-profile.png)
-*AI personality analysis, trust metrics, audience demographics, dan rate card*
+*AI personality analysis, trust metrics, audience demographics, content style, dan rate card*
+
+### Campaign Workspace
+![Campaign](public/images/screenshots/07-campaign.png)
+*Kelola campaign dari brief hingga completion dengan progress tracking dan status badges*
+
+### AI Chat Assistant
+![AI Chat](public/images/screenshots/08-chat.png)
+*Chat interface dengan suggested questions, kemampuan AI, dan konteks Indonesia*
 
 ---
 
-## Arsitektur
+## Arsitektur Sistem
 
 ```mermaid
 graph TB
-    subgraph Frontend["Frontend (Next.js 14 App Router)"]
+    subgraph Client["Frontend - Next.js 16 App Router"]
         LP[Landing Page]
         DB[Dashboard]
         BP[Brief Upload]
         CD[Creator Discovery]
+        CA[Tambah Creator]
         CP[Creator Profile]
         CW[Campaign Workspace]
-        CH[AI Chat]
+        CH[AI Chat Assistant]
     end
 
-    subgraph API["API Layer (Next.js Route Handlers)"]
-        A1[/api/ai/brief-parser]
-        A2[/api/ai/creator-match]
-        A3[/api/ai/chat]
+    subgraph API["API Layer - Next.js Route Handlers"]
+        A1[POST /api/ai/brief-parser]
+        A2[POST /api/ai/creator-match]
+        A3[POST /api/ai/chat]
+        A4[POST /api/ai/analyze-creator]
     end
 
     subgraph AI["AI Engine"]
-        GM[Google Gemini 2.0 Flash]
+        GM[Google Gemini 2.5 Flash]
         EM[Text Embedding 004]
         CS[Cosine Similarity]
+        SA[Input Sanitization]
+        RT[Retry Logic - 3 attempts]
     end
 
     subgraph Data["Data Layer"]
-        CR[Creator Profiles - 10 Indo creators]
-        CA[Campaign Data]
+        SD[Seed Data - 10 Creator Profiles]
+        LS[localStorage - User-added Creators]
+        US[Unified Creator Store]
+        CA2[Campaign Data]
         ST[Dashboard Stats]
     end
 
-    Frontend --> API
+    Client --> API
     API --> AI
     API --> Data
     AI --> GM
     AI --> EM
     EM --> CS
+    SD --> US
+    LS --> US
 
-    style Frontend fill:#f0f0ff,stroke:#7c3aed
+    style Client fill:#f0f0ff,stroke:#7c3aed
     style API fill:#f0fff0,stroke:#059669
     style AI fill:#fff0f0,stroke:#dc2626
     style Data fill:#fffff0,stroke:#d97706
 ```
 
-### Flow Diagram
+### Penjelasan Arsitektur
+
+**Frontend Layer:** Dibangun dengan Next.js 16 App Router menggunakan TypeScript strict mode. Semua halaman dashboard menggunakan shared layout dengan collapsible sidebar (pattern dari TailAdmin). Animasi menggunakan Framer Motion. UI components menggunakan pattern shadcn/ui dengan Radix UI primitives.
+
+**API Layer:** Empat endpoint utama yang masing-masing menangani satu concern. Setiap endpoint punya input validation, error handling, retry logic, dan standardized response format (`{ success, data, timestamp }`). Response headers include Cache-Control dan X-Content-Type-Options untuk security.
+
+**AI Engine:** Gemini 2.5 Flash sebagai model utama untuk text generation. Text Embedding 004 untuk semantic embeddings. Input sanitization mencegah prompt injection. Retry logic dengan exponential backoff (3 attempts, 1s/2s/4s delay) untuk handle transient failures.
+
+**Data Layer:** Unified Creator Store yang menggabungkan seed data (10 creator profiles hardcoded) dengan user-added creators (disimpan di localStorage). Fungsi `getAllCreators()` digunakan oleh semua halaman untuk mendapatkan data creator yang konsisten.
+
+---
+
+## Flow Diagram
 
 ```mermaid
 sequenceDiagram
@@ -171,47 +222,60 @@ sequenceDiagram
     participant F as Frontend
     participant A as API Route
     participant G as Gemini AI
+    participant S as Creator Store
 
-    U->>F: Upload campaign brief
+    Note over U,S: Flow 1: Upload Brief
+    U->>F: Paste campaign brief
     F->>A: POST /api/ai/brief-parser
-    A->>G: Parse brief (NLP)
-    G-->>A: Structured brief data
-    A-->>F: ParsedBrief JSON
-    F->>F: Display parsed results
+    A->>G: Parse brief dengan NLP
+    G-->>A: Structured ParsedBrief
+    A-->>F: JSON response
+    F->>F: Tampilkan hasil parsing
 
-    U->>F: Cari creator
+    Note over U,S: Flow 2: Tambah Creator
+    U->>F: Paste URL sosmed
+    F->>A: POST /api/ai/analyze-creator
+    A->>G: Analisis creator dari URL
+    G-->>A: Creator profile lengkap
+    A-->>F: JSON response
+    U->>F: Klik Simpan
+    F->>S: addCreator() ke localStorage
+
+    Note over U,S: Flow 3: Semantic Search
+    U->>F: Ketik query natural language
     F->>A: POST /api/ai/creator-match
     A->>G: Semantic matching
     G-->>A: Ranked creators + reasoning
-    A-->>F: MatchResult[]
-    F->>F: Display ranked creators
+    A-->>F: MatchResult array
+    F->>F: Tampilkan ranked results
 
-    U->>F: Chat dengan AI
+    Note over U,S: Flow 4: AI Chat
+    U->>F: Kirim pesan
     F->>A: POST /api/ai/chat
-    A->>G: Process with context
+    A->>G: Process dengan context
     G-->>A: AI response
     A-->>F: Response text
-    F->>F: Display chat bubble
+    F->>F: Tampilkan chat bubble
 ```
 
 ---
 
 ## Tech Stack
 
-| Layer | Teknologi | Alasan |
-|-------|-----------|--------|
-| **Framework** | Next.js 16 (App Router) | Server components, API routes, optimal performance |
-| **Language** | TypeScript (strict) | Type safety, better DX, fewer bugs |
-| **AI Engine** | Google Gemini 2.0 Flash | Fast, capable, multimodal, gratis via AI Studio |
-| **Styling** | Tailwind CSS 4 | Utility-first, rapid development, consistent design |
-| **UI Components** | shadcn/ui + Radix UI | Accessible, customizable, production-ready |
-| **Animation** | Framer Motion | Smooth, performant animations |
-| **Icons** | Lucide React | Consistent, lightweight icon set |
-| **Charts** | Recharts | Composable chart components |
-| **Testing** | Jest + Testing Library | Industry standard, reliable |
-| **CI/CD** | GitHub Actions | Auto test, build, deploy |
-| **Deployment** | Vercel + Cloud Run ready | Edge network, instant deploys |
-| **Containerization** | Docker (multi-stage) | Optimized production image |
+| Layer | Teknologi | Kenapa Dipilih |
+|-------|-----------|----------------|
+| **Framework** | Next.js 16 (App Router) | Server components, API routes built-in, optimal performance, standar industri |
+| **Language** | TypeScript 5 (strict) | Type safety, better developer experience, fewer runtime bugs |
+| **AI Engine** | Google Gemini 2.5 Flash | Cepat, capable, multimodal, gratis via AI Studio, cocok buat kompetisi Google |
+| **Styling** | Tailwind CSS 4 | Utility-first, rapid development, consistent design system |
+| **UI Components** | shadcn/ui + Radix UI | Accessible, customizable, production-ready, unstyled primitives |
+| **Animation** | Framer Motion | Smooth, performant, declarative animations |
+| **Icons** | Lucide React | Consistent, lightweight, 1000+ icons, tree-shakeable |
+| **Charts** | Recharts | Composable React chart components |
+| **Testing** | Jest + Testing Library | Industry standard, reliable, good DX |
+| **CI/CD** | GitHub Actions | Auto test dan build on push |
+| **Hosting** | Google Cloud Run + Vercel | Cloud Run untuk kompetisi, Vercel untuk preview |
+| **Container** | Docker (multi-stage) | Optimized production image, Cloud Run compatible |
 
 ---
 
@@ -219,101 +283,104 @@ sequenceDiagram
 
 ```
 kolab-ai/
-├── .github/
-│   └── workflows/
-│       └── ci.yml                 # CI/CD pipeline
-├── public/
-│   └── images/
-│       └── screenshots/           # Screenshot tiap halaman
+├── .github/workflows/
+│   └── ci.yml                          # CI/CD pipeline
+├── public/images/screenshots/          # Screenshot tiap halaman
 ├── src/
-│   ├── __tests__/                 # Unit tests
-│   │   ├── api/
+│   ├── __tests__/                      # Unit tests (40 test cases)
+│   │   ├── api/                        # API validation tests
 │   │   │   ├── brief-parser.test.ts
 │   │   │   ├── chat.test.ts
 │   │   │   └── creator-match.test.ts
-│   │   └── lib/
+│   │   └── lib/                        # Library tests
 │   │       ├── data.test.ts
 │   │       ├── gemini.test.ts
 │   │       └── utils.test.ts
 │   ├── app/
-│   │   ├── (dashboard)/           # Dashboard layout group
-│   │   │   ├── brief/             # Upload Brief page
-│   │   │   ├── campaign/          # Campaign Workspace
-│   │   │   ├── chat/              # AI Chat Assistant
-│   │   │   ├── creators/          # Creator Discovery
-│   │   │   │   └── [id]/          # Creator Profile (dynamic)
-│   │   │   ├── dashboard/         # Main Dashboard
-│   │   │   └── layout.tsx         # Shared dashboard layout
-│   │   ├── api/ai/                # API routes
-│   │   │   ├── brief-parser/
-│   │   │   ├── chat/
-│   │   │   └── creator-match/
+│   │   ├── (dashboard)/                # Dashboard layout group
+│   │   │   ├── brief/page.tsx          # Upload Brief
+│   │   │   ├── campaign/page.tsx       # Campaign Workspace
+│   │   │   ├── chat/page.tsx           # AI Chat Assistant
+│   │   │   ├── creators/
+│   │   │   │   ├── page.tsx            # Creator Discovery
+│   │   │   │   ├── add/page.tsx        # Tambah Creator via URL
+│   │   │   │   └── [id]/page.tsx       # Creator Profile Detail
+│   │   │   ├── dashboard/page.tsx      # Main Dashboard
+│   │   │   └── layout.tsx              # Shared dashboard layout
+│   │   ├── api/ai/                     # API routes
+│   │   │   ├── analyze-creator/route.ts
+│   │   │   ├── brief-parser/route.ts
+│   │   │   ├── chat/route.ts
+│   │   │   └── creator-match/route.ts
 │   │   ├── globals.css
-│   │   ├── layout.tsx             # Root layout
-│   │   └── page.tsx               # Landing page
+│   │   ├── layout.tsx                  # Root layout
+│   │   └── page.tsx                    # Landing page
 │   ├── components/
-│   │   ├── layout/                # Sidebar, Navbar, DashboardLayout
-│   │   └── ui/                    # Reusable UI components
+│   │   ├── layout/                     # Sidebar, Navbar, DashboardLayout
+│   │   └── ui/                         # Button, Card, Badge, Input, dll
+│   ├── context/
+│   │   └── sidebar-context.tsx         # Sidebar state management
 │   ├── lib/
-│   │   ├── ai/                    # AI engine modules
-│   │   │   ├── brief-parser.ts    # Brief parsing logic
-│   │   │   ├── chat-engine.ts     # Chat processing
-│   │   │   ├── creator-matcher.ts # Semantic matching
-│   │   │   ├── gemini.ts          # Gemini client & utils
-│   │   │   └── index.ts           # Barrel export
-│   │   ├── data/                  # Seed data
+│   │   ├── ai/                         # AI engine modules
+│   │   │   ├── brief-parser.ts
+│   │   │   ├── chat-engine.ts
+│   │   │   ├── creator-analyzer.ts
+│   │   │   ├── creator-matcher.ts
+│   │   │   ├── gemini.ts
+│   │   │   ├── index.ts
+│   │   │   └── utils.ts
+│   │   ├── data/                       # Data layer
 │   │   │   ├── campaigns.ts
-│   │   │   └── creators.ts        # 10 creator profiles Indo
-│   │   └── utils.ts               # Utility functions
-│   └── types/
-│       └── index.ts               # TypeScript type definitions
-├── .env.example                   # Environment template
-├── .gitignore                     # Comprehensive gitignore
-├── Dockerfile                     # Multi-stage Docker build
-├── jest.config.ts                 # Jest configuration
-├── next.config.ts                 # Next.js config (standalone)
+│   │   │   ├── creator-store.ts        # Unified creator store
+│   │   │   └── creators.ts             # Seed data (10 creators)
+│   │   └── utils.ts
+│   └── types/index.ts                  # TypeScript type definitions
+├── .env.example
+├── .gitignore
+├── Dockerfile                          # Multi-stage Docker build
+├── jest.config.ts
+├── next.config.ts
 ├── package.json
-├── tsconfig.json
-└── README.md                      # Dokumentasi ini
+└── tsconfig.json
 ```
 
 ---
 
-## Cara Install & Jalankan
+## Cara Install dan Jalankan
 
 ### Prerequisites
 
-- Node.js 22+
-- npm 10+
+- Node.js 22 atau lebih baru
+- npm 10 atau lebih baru
 - Google Gemini API Key (gratis dari [AI Studio](https://aistudio.google.com))
 
 ### Setup Lokal
 
 ```bash
-# 1. Clone repository
+# Clone repository
 git clone https://github.com/el-pablos/kolab-ai.git
 cd kolab-ai
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Setup environment variables
+# Setup environment variables
 cp .env.example .env.local
-# Edit .env.local dan masukkan GEMINI_API_KEY
+# Edit .env.local dan masukkan GEMINI_API_KEY kamu
 
-# 4. Jalankan development server
+# Jalankan development server
 npm run dev
 
-# 5. Buka http://localhost:3000
+# Buka http://localhost:3000
 ```
 
 ### Environment Variables
 
-| Variable | Deskripsi | Required |
-|----------|-----------|----------|
-| `GEMINI_API_KEY` | API key dari Google AI Studio | ✅ |
-| `NEXT_PUBLIC_APP_URL` | URL aplikasi | ❌ |
-| `NEXT_PUBLIC_APP_NAME` | Nama aplikasi | ❌ |
+| Variable | Deskripsi | Wajib |
+|----------|-----------|-------|
+| `GEMINI_API_KEY` | API key dari Google AI Studio | Ya |
+| `NEXT_PUBLIC_APP_URL` | URL aplikasi | Tidak |
+| `NEXT_PUBLIC_APP_NAME` | Nama aplikasi | Tidak |
 
 ---
 
@@ -321,26 +388,29 @@ npm run dev
 
 ### POST `/api/ai/brief-parser`
 
-Parse campaign brief menggunakan Gemini AI.
+Parse campaign brief menggunakan Gemini AI. Menerima teks brief mentah dan mengembalikan data terstruktur.
 
 **Request:**
 ```json
 {
-  "brief": "Campaign skincare untuk wanita 20-35 tahun..."
+  "brief": "Campaign skincare vitamin C untuk wanita 20-35 tahun di Jakarta. Budget 100jt."
 }
 ```
 
 **Response:**
 ```json
 {
-  "result": {
-    "title": "Campaign Skincare",
-    "brand": "GlowLab",
-    "objective": "Awareness",
-    "targetAudience": { "ageRange": "20-35", "gender": "70% female" },
-    "tone": ["premium", "educational"],
-    "keywords": ["skincare", "vitamin c"],
-    "idealCreatorProfile": "Creator beauty dengan vibe premium..."
+  "success": true,
+  "data": {
+    "result": {
+      "title": "Campaign Skincare Vitamin C",
+      "brand": "...",
+      "objective": "...",
+      "targetAudience": { "ageRange": "20-35", "gender": "70% female" },
+      "tone": ["premium", "educational"],
+      "keywords": ["skincare", "vitamin c"],
+      "idealCreatorProfile": "Creator beauty dengan vibe premium..."
+    }
   }
 }
 ```
@@ -349,38 +419,41 @@ Parse campaign brief menggunakan Gemini AI.
 
 Semantic matching creator dengan brief atau natural language query.
 
-**Request (query mode):**
+**Request (search mode):**
 ```json
-{
-  "query": "creator beauty soft-spoken yang audience-nya ibu-ibu"
-}
+{ "query": "creator beauty soft-spoken Jakarta" }
 ```
 
 **Request (brief mode):**
 ```json
-{
-  "brief": { /* ParsedBrief object */ }
-}
+{ "brief": { "title": "...", "targetAudience": {...}, "keywords": [...] } }
+```
+
+### POST `/api/ai/analyze-creator`
+
+Analisis creator dari URL sosial media menggunakan Gemini AI.
+
+**Request:**
+```json
+{ "url": "https://tiktok.com/@radityadika" }
 ```
 
 **Response:**
 ```json
 {
-  "results": [
-    {
-      "creator": { /* Creator object */ },
-      "score": 92,
-      "breakdown": {
-        "audienceFit": 95,
-        "toneFit": 90,
-        "nicheFit": 88,
-        "budgetFit": 85,
-        "reliabilityScore": 95,
-        "engagementQuality": 92
-      },
-      "reasoning": "Creator ini sangat cocok karena..."
+  "success": true,
+  "data": {
+    "creator": {
+      "name": "Raditya Dika",
+      "username": "@radityadika",
+      "followers": 20900000,
+      "engagementRate": 4.2,
+      "personality": {
+        "tone": "humoris cerdas",
+        "description": "Creator dengan kepribadian cerdas dan humoris..."
+      }
     }
-  ]
+  }
 }
 ```
 
@@ -396,13 +469,6 @@ Chat dengan AI Campaign Assistant.
 }
 ```
 
-**Response:**
-```json
-{
-  "response": "Berdasarkan data yang gw punya, creator dengan trust level tertinggi adalah..."
-}
-```
-
 ---
 
 ## Testing
@@ -414,79 +480,78 @@ npm test
 # Jalankan dengan coverage
 npm run test:coverage
 
-# Watch mode (development)
+# Watch mode untuk development
 npm run test:watch
 ```
 
-### Test Results
+### Hasil Test
 
 ```
 Test Suites: 6 passed, 6 total
-Tests:       39 passed, 39 total
+Tests:       40 passed, 40 total
 Snapshots:   0 total
 ```
 
 Test coverage mencakup:
-- ✅ Utility functions (cn, class merging)
-- ✅ AI engine (cosine similarity, vector operations)
-- ✅ Data integrity (creator profiles, campaigns, stats)
-- ✅ API validation (brief parser, chat, creator match)
+- Utility functions (cn, class merging, cosine similarity)
+- Data integrity (creator profiles, campaigns, dashboard stats)
+- API input validation (brief parser, chat, creator match)
+- Edge cases (empty input, max length, invalid types)
 
 ---
 
 ## Deployment
 
-### Vercel (Production)
-
-App sudah live di: **https://projek-juara-vibecoded.vercel.app**
-
-Setiap push ke `main` otomatis trigger deployment via Vercel Git Integration.
-
-### Docker (Cloud Run Ready)
+### Google Cloud Run (Production)
 
 ```bash
-# Build Docker image
-docker build -t kolab-ai .
-
-# Run locally
-docker run -p 8080:8080 -e GEMINI_API_KEY=your_key kolab-ai
-
-# Deploy ke Cloud Run
 gcloud run deploy kolab-ai \
   --source . \
   --region asia-southeast2 \
+  --platform managed \
   --allow-unauthenticated \
-  --set-env-vars GEMINI_API_KEY=your_key
+  --set-env-vars GEMINI_API_KEY=your_key \
+  --memory 512Mi \
+  --port 8080
 ```
 
-### CI/CD Pipeline
+**Live URL:** https://kolab-ai-839794389428.asia-southeast2.run.app
 
-GitHub Actions otomatis menjalankan:
-1. **Test** — Semua unit test harus passed
-2. **Build** — TypeScript compilation + Next.js build
-3. **Deploy** — Auto deploy ke Cloud Run (jika secrets configured)
+### Vercel (Preview)
+
+Auto-deploy dari GitHub. Setiap push ke `main` otomatis trigger deployment.
+
+**Preview URL:** https://projek-juara-vibecoded.vercel.app
+
+### Docker
+
+```bash
+docker build -t kolab-ai .
+docker run -p 8080:8080 -e GEMINI_API_KEY=your_key kolab-ai
+```
 
 ---
 
 ## Roadmap
 
-- [x] Brief Parser AI (Gemini)
+- [x] Brief Parser AI (Gemini 2.5 Flash)
 - [x] Semantic Creator Search
 - [x] Creator-Campaign Fit Scoring
 - [x] AI Personality Profiling
 - [x] AI Campaign Assistant (Chat)
+- [x] Tambah Creator via URL
+- [x] Unified Creator Store (localStorage)
 - [x] Campaign Workspace
 - [x] Dashboard Analytics
-- [x] Docker + Cloud Run ready
-- [x] CI/CD Pipeline
-- [x] Unit Testing (39 tests passed)
-- [ ] Real-time social media data integration (TikTok, IG API)
+- [x] Docker + Cloud Run deployment
+- [x] CI/CD Pipeline (GitHub Actions)
+- [x] Unit Testing (40 test cases)
+- [ ] Real-time social media API integration (TikTok, IG, YouTube)
 - [ ] Creator embeddings dengan vector database (pgvector)
-- [ ] Campaign memory engine (belajar dari campaign sebelumnya)
+- [ ] Campaign memory engine
 - [ ] Audience trust graph analysis
 - [ ] Multi-tenant support untuk agency
-- [ ] Payment & invoice tracking
-- [ ] Creator outreach automation
+- [ ] Payment dan invoice tracking
 
 ---
 
@@ -518,8 +583,8 @@ MIT License — silakan gunakan, modifikasi, dan distribusikan.
 
 <div align="center">
 
-**Built with ❤️ for #JuaraVibeCoding 2026**
+**Built for #JuaraVibeCoding 2026 — Powered by Google Gemini AI**
 
-Powered by [Google Gemini AI](https://ai.google.dev) · Deployed on [Vercel](https://vercel.com)
+Cloud Run: [kolab-ai-839794389428.asia-southeast2.run.app](https://kolab-ai-839794389428.asia-southeast2.run.app) | GitHub: [el-pablos/kolab-ai](https://github.com/el-pablos/kolab-ai)
 
 </div>
