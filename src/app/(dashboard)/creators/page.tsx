@@ -18,6 +18,7 @@ import {
   Lightbulb,
   Brain,
   Zap,
+  Plus,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -175,13 +176,21 @@ export default function CreatorsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-          Creator Discovery
-        </h1>
-        <p className="text-slate-500 mt-1">
-          Cari creator dengan natural language — AI memahami konteks, personality, dan audience fit secara semantik.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+            Creator Discovery
+          </h1>
+          <p className="text-slate-500 mt-1">
+            Cari creator dengan natural language — AI memahami konteks, personality, dan audience fit secara semantik.
+          </p>
+        </div>
+        <Link href="/creators/add">
+          <Button>
+            <Plus className="h-4 w-4" />
+            Tambah Creator
+          </Button>
+        </Link>
       </div>
 
       {/* AI Search Explanation */}

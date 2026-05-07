@@ -2,3 +2,4 @@ export { getGeminiClient, getModel, generateText, generateJSON, generateEmbeddin
 export { parseBrief } from "./brief-parser";
 export { matchCreators, searchCreators } from "./creator-matcher";
 export { processChat } from "./chat-engine";
+export { analyzeCreatorFromURL, detectPlatform, extractUsername, isValidSocialURL } from "./creator-analyzer";

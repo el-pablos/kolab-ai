@@ -13,6 +13,7 @@ import {
   BarChart3,
   MessageSquare,
   Shield,
+  Link2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageLoader } from "@/components/ui/page-loader";
@@ -53,6 +54,12 @@ const features = [
     title: "Trust & Risk Analysis",
     description:
       "Deteksi fake engagement, prediksi creator risk, dan analisis audience trust yang mendalam.",
+  },
+  {
+    icon: Link2,
+    title: "Tambah Creator via URL",
+    description:
+      "Paste URL TikTok/Instagram/YouTube — AI langsung analisis profil publik dan generate personality profile. Tanpa scraping, tanpa registrasi.",
   },
 ];
 
@@ -375,6 +382,67 @@ export default function LandingPage() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Data Acquisition — addresses "where does data come from?" */}
+        <section className="py-20 border-t border-slate-100 bg-gradient-to-b from-violet-50/50 to-white">
+          <div className="mx-auto max-w-7xl px-6">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                &quot;Data Creator-nya Dari Mana?&quot;
+              </h2>
+              <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
+                Pertanyaan bagus! KOLab AI BUKAN database statis. Kami menggunakan pendekatan AI-native yang revolusioner.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {[
+                {
+                  emoji: "🔗",
+                  title: "Paste URL Sosmed",
+                  desc: "User cukup paste URL profil TikTok, Instagram, atau YouTube creator. Tidak perlu registrasi, tidak perlu scraping manual.",
+                },
+                {
+                  emoji: "🤖",
+                  title: "AI Analisis Otomatis",
+                  desc: "Gemini AI membaca profil publik creator dan menganalisis personality, niche, audience demographics, dan engagement quality secara otomatis.",
+                },
+                {
+                  emoji: "📊",
+                  title: "Profil Intelligence",
+                  desc: "AI menghasilkan profil lengkap: personality embedding, trust score, audience analysis, dan pricing estimation. Siap untuk matching.",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="text-center p-6 rounded-2xl border border-violet-100 bg-white"
+                >
+                  <div className="text-4xl mb-4">{item.emoji}</div>
+                  <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
+                  <p className="mt-2 text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mt-8 text-sm text-slate-400 max-w-xl mx-auto"
+            >
+              Tidak ada creator yang perlu &quot;daftar&quot; ke platform kami. Data diambil dari profil publik yang bisa dilihat siapa saja. AI hanya menganalisis dan memberikan intelligence layer di atasnya.
+            </motion.p>
           </div>
         </section>
 
